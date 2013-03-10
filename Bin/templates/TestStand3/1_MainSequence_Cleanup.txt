@@ -1,0 +1,113 @@
+[DEF, SF.Seq[0].Cleanup]
+%[0] = Step
+%TYPE: %[0] = "Label"
+%[1] = Step
+%TYPE: %[1] = "TH_Stop"
+%[2] = Step
+%TYPE: %[2] = "NI_Wait"
+%[3] = Step
+%TYPE: %[3] = "SequenceCall"
+%[4] = Step
+%TYPE: %[4] = "SequenceCall"
+
+[SF.Seq[0].Cleanup[0].TS]
+Id = "\"ID#:GZn7libHU0e27LN7lpgxjA"
+NoResult = True
+
+[DEF, SF.Seq[0].Cleanup[0]]
+%NAME = "CLOSE"
+
+[SF.Seq[0].Cleanup[1].TS]
+Id = "ID#:4cWoJZNV0Ee1bOV70mMQ3C"
+PreCond = "FileGlobals.Embedded2==true"
+NoResult = True
+
+[DEF, SF.Seq[0].Cleanup[1]]
+%NAME = "Remote Control Stop"
+
+[SF.Seq[0].Cleanup[2].TS]
+Id = "ID#:z4MXOBbXeUu1kvyYDWjhGB"
+NoResult = True
+
+[SF.Seq[0].Cleanup[2]]
+SeqCallStepGroupIdx = -1
+TimeExpr = "2"
+
+[DEF, SF.Seq[0].Cleanup[2]]
+%NAME = "Wait"
+
+[DEF, SF.Seq[0].Cleanup[3].TS]
+SData = "TYPE, SeqCallStepAdditions"
+
+[SF.Seq[0].Cleanup[3].TS.SData]
+SFPath = "c:\\teststand\\kill.seq"
+SeqName = "MainSequence"
+SpecifyHostByExpr = True
+RemoteExecution = True
+RemoteHostExpr = "FileGlobals.PC_Env1_ip"
+
+[SF.Seq[0].Cleanup[3].TS]
+LoadOpt = "DynamicLoad"
+NoResult = True
+
+[DEF, SF.Seq[0].Cleanup[3]]
+%NAME = "kill PC Env1"
+
+[DEF, SF.Seq[0].Cleanup[4].TS]
+SData = "TYPE, SeqCallStepAdditions"
+
+[SF.Seq[0].Cleanup[4].TS.SData]
+SFPath = "c:\\teststand\\kill.seq"
+SeqName = "MainSequence"
+SpecifyHostByExpr = True
+RemoteExecution = True
+RemoteHostExpr = "FileGlobals.PC_Emb1_ip"
+
+[SF.Seq[0].Cleanup[4].TS]
+LoadOpt = "DynamicLoad"
+NoResult = True
+
+[DEF, SF.Seq[0].Cleanup[4]]
+%NAME = "kill PC Loco1"
+
+[DEF, SF.Seq[0].RTS]
+Type = Num
+OptimizeNonReentrantCalls = Bool
+EPNameExpr = Str
+EPEnabledExpr = Str
+EPMenuHint = Str
+EPIgnoreClient = Bool
+EPInitiallyHidden = Bool
+EPCheckToSaveTitledFile = Bool
+ShowEPAlways = Bool
+ShowEPForFileWin = Bool
+ShowEPForExeWin = Bool
+ShowEPForEditorOnly = Bool
+AllowIntExeOfEP = Bool
+CopyStepsOnOverriding = Bool
+Priority = Num
+
+[SF.Seq[0].RTS]
+%FLG: Type = 4194304
+OptimizeNonReentrantCalls = True
+%FLG: OptimizeNonReentrantCalls = 4194304
+EPNameExpr = "\"Unnamed Entry Point\""
+%FLG: EPNameExpr = 4194304
+EPEnabledExpr = "True"
+%FLG: EPEnabledExpr = 4194304
+%FLG: EPMenuHint = 4194304
+%FLG: EPIgnoreClient = 4194304
+%FLG: EPInitiallyHidden = 4194304
+EPCheckToSaveTitledFile = True
+%FLG: EPCheckToSaveTitledFile = 4194304
+%FLG: ShowEPAlways = 4194304
+ShowEPForFileWin = True
+%FLG: ShowEPForFileWin = 4194304
+%FLG: ShowEPForExeWin = 4194304
+%FLG: ShowEPForEditorOnly = 4194304
+%FLG: AllowIntExeOfEP = 4194304
+CopyStepsOnOverriding = True
+%FLG: CopyStepsOnOverriding = 4194304
+Priority = 2953567917
+%FLG: Priority = 4194304
+

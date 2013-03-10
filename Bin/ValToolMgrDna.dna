@@ -1,0 +1,112 @@
+﻿<DnaLibrary Name="ValToolMgr" RuntimeVersion="v4.0">
+  <ExternalLibrary Path="ValToolMgrDna.dll" />
+  <CustomUI>
+    <customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="ValToolMgr.xlam!Ribbon_OnLoad">
+      <!-- Indiquez True pour masquer tous les autres onglets standards-->
+      <ribbon startFromScratch="false">
+        <!--  Auteur fichier : DLE (ALTEN SA) -->
+        <tabs>
+          <!-- Crée un onglet personnalisé: -->
+          <!-- L'onglet va se positionner automatiquement à la fin du ruban. -->
+          <!-- Utilisez insertAfterMso="NomOngletPrédéfini" pour préciser l'emplacement de l'onglet -->
+          <tab id="macro_ass" label="Val Tool Mgr" visible="true">
+
+            <!-- Crée un groupe -->
+            <group id="gene1" label="Generations">
+
+              <!-- Crée un bouton: -->
+              <!--onAction="ProcLancement" définit la macro qui va être déclenchée lorsque vous allez cliquer sur le bouton -->
+
+              <!--imageMso="StartAfterPrevious" définit une image de la galerie Office qui va s'afficher sur le bouton. -->
+              <!--(consultez la FAQ Excel "Comment retrouver l'ID de chaque contrôle du ruban ?" pour plus de détails). -->
+              <!-- Nota: il est aussi possible d'ajouter des images externes pour personnaliser les boutons -->
+              <button id="pr_comp"
+            label="PR => Synth + Tests"
+            screentip="Génère la synthèse et les tests"
+                onAction="ValToolMgr.xlam!Ancien_Vers_Nouveau"
+                supertip="Génère à partir d'une fiche PR avec Entête modifiée, une fiche de Synthèse avec les Tests découpés par onglets."
+                size="normal"
+            imageMso="OutlineDemoteToBodyText" />
+              <button id="pr_comp1"
+                label="Synth => Tests"
+                screentip="Génère les onglets de tests à partir de la fiche de Synthèse"
+                    onAction="ValToolMgr.xlam!Generer_Onglets_Tests"
+                    supertip="Utilisez ce bouton pour générer les tests si vous avez modifier la Synthèse."
+                    size="normal"
+                imageMso="OutlineDemoteToBodyText" />
+              <button id="pr_comp2"
+                label="Synth + Tests => PR"
+                screentip="Génère un PR à partir de la Synthèse et des Tests"
+                    onAction="ValToolMgr.xlam!Reverse_Nvo_Vers_Ancien"
+                    supertip="Utilisez ce bouton pour générer un PR de sortie pour la base de donnée PRIMA à partir de la Synthèse et des Tests."
+                    size="normal"
+                imageMso="OutlinePromoteToHeading" />
+            </group>
+
+            <group id="ModifSynth" label="Edition">
+
+              <button id="NewSynth"
+            label="New PR"
+            screentip="Créer un nouveau projet PR vierge"
+                onAction="ValToolMgr.xlam!AddNewPR"
+            size="large"
+                supertip="Cette fonction créé un onglet de PDG, de Suivi d'évolution et une synthèse vierge dans un nouveau fichier PR. Le nom du fichier est demandé à sa création."
+                imageMso="CreateReportFromWizard" />
+
+              <button id="add_step"
+                label="Add Step"
+                screentip="Add a new step to the current test sheet"
+                    onAction="ValToolMgr.xlam!AddNewStep"
+                size="large"
+                    imageMso="CreateReportFromWizard" />
+            </group>
+            <!-- 
+	<group id="verif1" label="Vérifications" getVisible="ValToolMgr.xlam!getVisibleVerifTab">
+	
+      	<button id="doub" 
+			label="Test - Doublons, Types" 
+			screentip="Vérification du test affiché"
+      		onAction="ValToolMgr.xlam!VerificationsTestCourant"
+			getVisible="setVisible_VerifTestButton"
+			size="large" 
+      		supertip=" "
+      		imageMso="FileCompatibilityChecker" />
+    	</group>	
+ -->
+
+            <group id="info_macro" label="Macro Informations">
+              <labelControl id="version_macro" getLabel="ValToolMgr.xlam!SetVersion" />
+              <labelControl id="date_maj1" getLabel="ValToolMgr.xlam!SetUpdateDate" />
+
+              <checkBox id="Checkbox1" label="Auto update"
+        screentip="Automatic update"
+        supertip="La mise-à-jour automatique se fait au démarrage de session Windows, quand elle est sélectionnée."
+        onAction="ValToolMgr.xlam!ToggleMAJAuto"
+            getPressed="ValToolMgr.xlam!InitMajAuto"/>
+              <button id="updateButton"
+            label="Manual update"
+            screentip="Do a manual update"
+                onAction="ValToolMgr.xlam!UpdateManual"
+            size="large"
+                supertip="Pour que la mise à jour puisse se faire, il faut avoir accès au réseau. Pour forcer une réinstallation de la version serveur, lancer .ad.sysroot_flo_EtudesEL2cmdde Test13_Macros_auto_macro_alstom_tcms_prima.bat"
+                imageMso="Refresh"
+            getVisible="ValToolMgr.xlam!CallbackGetVisible"
+            tag="manualUpdateButton"/>
+            </group>
+
+            <group id="layout_version" label="Layout Version">
+              <labelControl id="layout_label" label="Choose your version" />
+              <dropDown id="dd1"
+            getItemCount="DDItemCount"
+            getItemLabel="DDListItem"
+            onAction="DDOnAction"
+            getSelectedItemIndex="DDItemSelectedIndex"/>
+            </group>
+          </tab>
+
+        </tabs>
+      </ribbon>
+    </customUI>
+
+  </CustomUI>
+</DnaLibrary>

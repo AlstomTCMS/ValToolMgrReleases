@@ -1,0 +1,28 @@
+%FLG: Main = 4194304
+%HI: Setup = [28]
+%FLG: Setup = 4194304
+%HI: Cleanup = [4]
+%FLG: Cleanup = 4194304
+%FLG: GotoCleanupOnFail = 4194312
+RecordResults = True
+%FLG: RecordResults = 4194312
+%FLG: RTS = 4456456
+
+[DEF, SF.Seq[0].Locals]
+ResultList = Objs
+cycle_TESTSTAND = Num
+Report = Ref
+lue = Bool
+EACB_File = Str
+HARD = Str
+
+[DEF, SF.Seq[0].Locals.ResultList]
+%EPTYPE = TEResult
+
+[SF.Seq[0].Locals.cycle_TESTSTAND]
+%NUMFMT = "%g"
+
+[SF.Seq[0].Locals]
+EACB_File = "C:\\Russian_2ES5_EnvTest_1_0_0\\Workbench\\build\\conf_banc_env\\embedded\\target_testbench\\EACB.xml"
+HARD = "C:\\Russian_2ES5_EnvTest_1_0_0\\Workbench\\build\\conf_banc_env\\embedded\\target_testbench\\HARD.xml"
+
