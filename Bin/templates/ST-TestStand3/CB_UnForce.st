@@ -7,7 +7,7 @@ StatusExpr Line0002 = "ail ? \"Passed\": \"Failed\""
 SData = "TYPE, AutomationStepAdditions"
 
 [SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS.SData.Call]
-ObjectVariable = "FileGlobals.cb1"
+ObjectVariable = "$Instruction.Location$"
 Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
 ServerName = "Interface between TestStand3.0 - CB4.0 - RP"
 CoClass = "{B51A0060-36D9-4E5C-AB1A-65720FD2E9CA}"

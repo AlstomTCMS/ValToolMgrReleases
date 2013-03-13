@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DOCTYPE Configuration SYSTEM "configuration-0.1.dtd" -->
+<Configuration>
+  <LocationDefinitions>
+    <Location name="Unit1/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB1" />
+	<Location name="Unit2/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB2" />
+	<Location name="Unit1/MPU1" strategy="SingleLocationToSingleTarget" targetConfig="SECTION1_MPU_A" />
+	<Location name="Unit1/MPU2" strategy="SingleLocationToSingleTarget" targetConfig="SECTION1_MPU_T" />
+	<Location name="Unit2/MPU1" strategy="SingleLocationToSingleTarget" targetConfig="SECTION2_MPU_A" />
+	<Location name="Unit2/MPU2" strategy="SingleLocationToSingleTarget" targetConfig="SECTION2_MPU_T" />
+  </LocationDefinitions>
+  <TargetDefinitions>
+    <Target name="TB1" testStandIdentifier="Fileglobals.env1" />
+	<Target name="TB2" testStandIdentifier="Fileglobals.env2" />
+    <Target name="SECTION1_MPU_A" testStandIdentifier="Fileglobals.cb1" />
+    <Target name="SECTION1_MPU_T" testStandIdentifier="Fileglobals.cb2" />
+    <Target name="SECTION2_MPU_A" testStandIdentifier="Fileglobals.cb3" />
+    <Target name="SECTION2_MPU_T" testStandIdentifier="Fileglobals.cb4" />
+  </TargetDefinitions>
+</Configuration>

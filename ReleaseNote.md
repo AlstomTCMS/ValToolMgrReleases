@@ -1,53 +1,43 @@
-ValToolMgr
-==========
+# ValToolMgr
+
+## Abstract
 This tool is intended to generate TestStand sequences using some Excel macros.
 
-Problem(Abstract)
-====
+## Demonstration sample
+State of art of what is able to handle this script is presented on directory <test/UnitTest 2013 00.xlsx>. This file is intended to describe all currently available features, at least once.
+Remember to use the one from a released version (see #Version history below).
 
-Programmatic Access to Visual Basic Project is Not Trusted
-Cause
+# Version history
 
-This message can appear when accessing objects with macro's and/or attempting to generate an entire FSR report and choosing the "Run Macro" option.
-Resolving the problem
+## ValToolMgr_0.0.4
 
-Excel 2003
+Source code : [ValToolMgr_0.0.4](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.4)
 
-1. On the Tools menu, point to Macro, and then click Security.
-2. Click the Trusted Publishers tab.
-3. Select the check box next to Trust access to Visual Basic Project, and then click OK.
-4. Close all Office applications and try your project again.
+List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=5&state=closed)
 
-Excel 2007
+Main points :
+ * [#55](https://github.com/AlstomTCMS/ValToolMgr/issues/55) : QuickAccess is enabled by default;
+ * [#47](https://github.com/AlstomTCMS/ValToolMgr/issues/47) : Multiple units is enabled, with most common function (One section is mapped to one testbench computer). Refers to https://github.com/AlstomTCMS/ValToolMgrDoc/blob/master/Specification/SpecificationLocation.md for details.
+ 
+Main limitations :
+ * [#62](https://github.com/AlstomTCMS/ValToolMgr/issues/62) : No possibility to unforce arrays.
+ * [#63](https://github.com/AlstomTCMS/ValToolMgr/issues/63) : Generate .SEQ where is saved XLS file, with same name as the XLS file.
+ * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
 
-1. Open Excel 2007
-2. Click the Office Button (top-left most button in the window)
-3. Click the Excel Options button.
-4. Click Trust Center in the menu on the left.
-5. Click Trust Center Settings in the window on the right.
-6. In the new window that opens click Macros in the menu on the left.
-7. Check the box next to Trust Access to the VBA project object model.
-8. Click OK.
-9. Click OK.
+## ValToolMgr_0.0.3
 
-Excel 2010
+Source code : [ValToolMgr_0.3](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.3)
 
-1. Click the File Tab (top-left most tab in the window)
-2. Click the Excel Options button.
-3. Click Trust Center in the menu on the left.
-4. Click Trust Center Settings in the window on the right.
-5. In the new window that opens click Macro Settings in the menu on the left.
-6. Check the box next to Trust access to the VBA project object model.
-7. Click OK.
-8. Click OK.
+List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=4&state=closed)
 
-Solution #2
-
-If the above options are completed, but the error persists check to ensure "Visual Basic" and "Macro" buttons are not greyed out within the Developer Ribbon in Excel. If they are greyed this suggests that some Excel features are disabled as a result of "Visual Basic for Applications" not being available or being disabled at a system policy level.
-
-This can be resolved in one of two ways:
-
-1. Re-install Office and during the install process ensure "Visual Basic for Applications" is selected as an install setting.
-2. Ensure "Disable VBA for Office Applications" is not set a system policy or group policy (GPO).
-
-For additional information regarding this behavior see the following Microsoft KB Article, 282847.
+Main points :
+ * [#38](https://github.com/AlstomTCMS/ValToolMgr/issues/38) : VBA is not used anymore, it is replaced by C# which offers much more possibilities
+ * [#52](https://github.com/AlstomTCMS/ValToolMgr/issues/52) : Logging feature is enabled on some parts of the project. A file called log-file.txt is created where are stored DLL's. It is possible to read this file using Chainsaw, which is delivered in following directory : <tools/Chainsaw>
+ * [#53](https://github.com/AlstomTCMS/ValToolMgr/issues/53), [#16](https://github.com/AlstomTCMS/ValToolMgr/issues/16), [#20](https://github.com/AlstomTCMS/ValToolMgr/issues/20), [#32](https://github.com/AlstomTCMS/ValToolMgr/issues/32) : New Teststand steps are available. It should be sufficient to begin using validation sequences.
+ * [#50](https://github.com/AlstomTCMS/ValToolMgr/issues/50) : Tool is able to generate all selected sheets together.
+ 
+Main limitations :
+ * [#62](https://github.com/AlstomTCMS/ValToolMgr/issues/62) : No possibility to unforce arrays.
+ * [#47](https://github.com/AlstomTCMS/ValToolMgr/issues/47) : No possibility to generate a Multiple unit/Multiple equipment sequence file.
+ * [#63](https://github.com/AlstomTCMS/ValToolMgr/issues/63) : Generate .SEQ where is saved XLS file, with same name as the XLS file.
+ * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.

@@ -53,7 +53,9 @@ TH_Stop = StepType
 CB_TestAna = StepType
 CB_UnForce = StepType
 CB_ForceArrayElement = StepType
+MessagePopup = StepType
 CB_TestArrayElement = StepType
+CB_QuickInit = StepType
 
 [DEF, SF]
 Seq = Objs
@@ -105,7 +107,7 @@ RTS = Obj
 %FLG: Locals = 4194304
 %HI: Main = [$TestStandFile.HeaderList.Max$]
 %FLG: Main = 4194304
-%HI: Setup = [28]
+%HI: Setup = [29]
 %FLG: Setup = 4194304
 %HI: Cleanup = [4]
 %FLG: Cleanup = 4194304
@@ -191,6 +193,8 @@ $SequenceContent("0", TestStandFile.HeaderList)$[DEF, SF.Seq[0].Setup]
 %TYPE: %[27] = "TH_Init"
 %[28] = Step
 %TYPE: %[28] = "TH_Start"
+%[29] = Step
+%TYPE: %[29] = "CB_QuickInit"
 
 [SF.Seq[0].Setup[0].TS]
 NoResult = True
@@ -1489,6 +1493,130 @@ sRemoteEqtAddress = "FileGlobals.DDU_ip"
 [DEF, SF.Seq[0].Setup[28]]
 %NAME = "Remote Control Start"
 
+[SF.Seq[0].Setup[29].TS]
+Id = "ID#:ovNEL1MmgE+PW5IuH4ed0D"
+
+[DEF, SF.Seq[0].Setup[29].TS]
+SData = "TYPE, AutomationStepAdditions"
+
+[SF.Seq[0].Setup[29].TS.SData.Call]
+ObjectVariable = "FileGlobals.cb1"
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3.0 - CB4.0 - RP"
+CoClass = "{B51A0060-36D9-4E5C-AB1A-65720FD2E9CA}"
+CoClassName = "ControlBuild"
+Interface = "{7B61F889-72CD-487A-ACEE-A7156B3F0B85}"
+InterfaceName = "_ControlBuild"
+MemberType = 1
+Member = 1610809527
+MemberName = "CB_QuickInit"
+HasMemberInfo = True
+Locale = 1036
+TypeLibVersion = "4ba.0"
+InterfaceType = 1
+VTableOffset = 844
+%HI: Parameters = [8]
+
+[DEF, SF.Seq[0].Setup[29].TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+%[1] = "TYPE, AutomationParameter"
+%[2] = "TYPE, AutomationParameter"
+%[3] = "TYPE, AutomationParameter"
+%[4] = "TYPE, AutomationParameter"
+%[5] = "TYPE, AutomationParameter"
+%[6] = "TYPE, AutomationParameter"
+%[7] = "TYPE, AutomationParameter"
+%[8] = "TYPE, AutomationParameter"
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[0]]
+Name = "bIsEmbedded"
+ArgVal = "True"
+ArgDisplayVal = "True"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[1]]
+Name = "bEnableCheckDuringForce"
+ArgVal = "False"
+ArgDisplayVal = "False"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[2]]
+Name = "strProjectpath"
+ArgVal = "FileGlobals.CB_Path_Name"
+ArgDisplayVal = "FileGlobals.CB_Path_Name"
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[3]]
+Name = "strApplicationName"
+ArgVal = "FileGlobals.CB_Project_Name"
+ArgDisplayVal = "FileGlobals.CB_Project_Name"
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[4]]
+Name = "strConfName"
+ArgVal = "FileGlobals.CB_Task_Name"
+ArgDisplayVal = "FileGlobals.CB_Task_Name"
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[5]]
+Name = "bForceSubscription"
+ArgVal = "False"
+ArgDisplayVal = "False"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[6]]
+Name = "lWaitingTimeForMessageSent"
+ArgVal = "0"
+ArgDisplayVal = "0"
+Type = 3
+DisplayType = "Number (Signed 32-bit Integer)"
+TypeValid = True
+Direction = 1
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[7]]
+Name = "passFail"
+ArgVal = "Step.Result.PassFail"
+ArgDisplayVal = "Step.Result.PassFail"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[SF.Seq[0].Setup[29].TS.SData.Call.Parameters[8]]
+Name = "errorMsg"
+ArgVal = "Step.Result.ReportText"
+ArgDisplayVal = "Step.Result.ReportText"
+Type = 8
+DisplayType = "String"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[SF.Seq[0].Setup[29]]
+InBuf = "True"
+
+[DEF, SF.Seq[0].Setup[29]]
+%NAME = "Initialize CB quick access"
+
 [DEF, SF.Seq[0].Cleanup]
 %[0] = Step
 %TYPE: %[0] = "Label"
@@ -1736,6 +1864,10 @@ TH_Start = "TH_Start"
 TH_Stop = "TH_Stop"
 CB_TestAna = "CB_TestAna"
 CB_UnForce = "CB_UnForce"
+CB_ForceArrayElement = "CB_ForceArrayElement"
+MessagePopup = "MessagePopup"
+CB_TestArrayElement = "CB_TestArrayElement"
+CB_QuickInit = "CB_QuickInit"
 
 [DEF, Path]
 %LOCATION = "StdTypes"
@@ -6517,6 +6649,1018 @@ ReportText = Str
 Common = "TYPE, CommonResults"
 
 [CB_UnForce.Result]
+%FLG: Error = 4194304
+%INSTFLG: Error = 4194304
+%INSTOVRD: Error = 4194304
+%FLG: Status = 4194304
+%INSTFLG: Status = 4194304
+PassFail = True
+%INSTOVRD: Common = 4194304
+
+[DEF, CB_ForceArrayElement]
+%LOCATION = "StepTypes"
+Substeps = "TYPE, StepTypeSubstepsArray"
+DescriptionFormat = "TYPE, Expression"
+%FLG: DescriptionFormat = 524288
+DefaultNameFormat = "TYPE, Expression"
+%FLG: DefaultNameFormat = 524288
+Menu = "TYPE, StepTypeMenu"
+TS = "TYPE, TEInf"
+Result = Obj
+InBuf = Str
+DataSource = Str
+CodeTemplates = Str
+%FLG: CodeTemplates = 524288
+%ROOT_TYPE = True
+
+[CB_ForceArrayElement]
+%HI: Substeps = [0]
+DescriptionFormat Line0001 = "\"Force the value of element of index \" + Step.TS.SData.Call.Parameters[2].ArgVal + \" from the array \" + Step.TS.SDat"
+DescriptionFormat Line0002 = "a.Call.Parameters[1].ArgVal + \" of instance \" + Step.TS.SData.Call.Parameters[0].ArgVal  + \" with \" + Step.TS.SData."
+DescriptionFormat Line0003 = "Call.Parameters[3].ArgVal"
+%FLG: DescriptionFormat = 4194328
+%INSTFLG: DescriptionFormat = 4718616
+%INSTOVRD: DescriptionFormat = 4718616
+DefaultNameFormat = "\"Force an element from an array\""
+%FLG: DefaultNameFormat = 4194328
+%INSTFLG: DefaultNameFormat = 4718616
+%INSTOVRD: DefaultNameFormat = 4718616
+%INSTFLG: TS = 4194304
+%FLG: Result = 4194304
+%INSTFLG: Result = 4194304
+DataSource = "Step.Result.PassFail"
+CodeTemplates = "PassFail_Template|PassFailMFC_Template"
+%FLG: CodeTemplates = 24
+%COMMENT = "\n  "
+%TIMESTAMP = 1201268994
+%VERSION = "0.0.0.13"
+%TYPELASTMOD = "3.0.0.12373"
+%FLG = 9216
+%TYPE_FLG = 2
+
+[DEF, CB_ForceArrayElement.Substeps]
+%[0] = Step
+%TYPE: %[0] = "EditSubstep"
+
+[DEF, CB_ForceArrayElement.Substeps[0].TS]
+SData = "TYPE, AutomationStepAdditions"
+%FLG: SData = 2097152
+
+[CB_ForceArrayElement.Substeps[0].TS.SData.Call]
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3 et CB3.0.1."
+CreateObject = 0
+CoClass = "{3153F69B-D9BA-4C88-84B5-C6663E5D63E3}"
+CoClassName = "affichage"
+Interface = "{E7DF6FB1-144A-4111-8DA4-EBEE16326E51}"
+InterfaceName = "_affichage"
+MemberType = 1
+Member = 1610809345
+MemberName = "editionCB"
+HasMemberInfo = True
+TypeLibVersion = "358.0"
+InterfaceType = 1
+VTableOffset = 32
+%HI: Parameters = [0]
+
+[DEF, CB_ForceArrayElement.Substeps[0].TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+
+[CB_ForceArrayElement.Substeps[0].TS.SData.Call.Parameters[0]]
+Name = "SeqContext"
+ArgVal = "ThisContext"
+ArgDisplayVal = "ThisContext"
+Type = 9
+DisplayType = "SequenceContext (Object Reference)"
+TypeValid = True
+Direction = 3
+IsByRef = True
+IID = "{6427D0E0-E410-11D0-93B4-0020AF68E893}"
+
+[CB_ForceArrayElement.Substeps[0].TS]
+%INSTOVRD: SData = 7274520
+ConnectionLifetime = 0
+
+[CB_ForceArrayElement.Substeps[0]]
+%INSTFLG: TS = 0
+
+[CB_ForceArrayElement.Substeps[0].Result]
+%INSTOVRD: Error = 4194304
+%INSTFLG: ReportText = 0
+
+[DEF, CB_ForceArrayElement.Substeps[0]]
+%NAME = "Edit_Parameters"
+
+[CB_ForceArrayElement.Menu]
+ItemName = "\"Force an element from an array\""
+Group = "Forcing variables"
+
+[CB_ForceArrayElement.TS]
+Icon = "ExprBrowse.ico"
+ConnectionLifetime = 0
+StatusExpr Line0001 = "Step.DataSource != \"Step.Result.PassFail\" ? Step.Result.PassFail = Evaluate(Step.DataSource) : False, Step.Result.Pass"
+StatusExpr Line0002 = "Fail ? \"Passed\" : \"Failed\" "
+%INSTFLG: StatusExpr = 1
+%INSTOVRD: StatusExpr = 5046297
+
+[DEF, CB_ForceArrayElement.TS]
+SData = "TYPE, AutomationStepAdditions"
+%FLG: SData = 2097152
+
+[CB_ForceArrayElement.TS.SData.Call]
+ObjectVariable = "FileGlobals.cb"
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3 et CB3.0.1."
+CoClass = "{B51A0060-36D9-4E5C-AB1A-65720FD2E9CA}"
+CoClassName = "ControlBuild"
+Interface = "{39FB1F8C-2512-42A1-9E37-D22340C540B9}"
+InterfaceName = "_ControlBuild"
+MemberType = 1
+Member = 1610809398
+MemberName = "CB_ForceArrayElement"
+HasMemberInfo = True
+Locale = 1036
+TypeLibVersion = "358.0"
+InterfaceType = 1
+VTableOffset = 340
+%HI: Parameters = [5]
+
+[DEF, CB_ForceArrayElement.TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+%[1] = "TYPE, AutomationParameter"
+%[2] = "TYPE, AutomationParameter"
+%[3] = "TYPE, AutomationParameter"
+%[4] = "TYPE, AutomationParameter"
+%[5] = "TYPE, AutomationParameter"
+
+[CB_ForceArrayElement.TS.SData.Call.Parameters[0]]
+Name = "strInstanceName"
+ArgVal = "\"\""
+ArgDisplayVal = "\"\""
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_ForceArrayElement.TS.SData.Call.Parameters[1]]
+Name = "strVariableName"
+ArgVal = "\"\""
+ArgDisplayVal = "\"\""
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_ForceArrayElement.TS.SData.Call.Parameters[2]]
+Name = "nIndex"
+ArgVal = "0"
+ArgDisplayVal = "0"
+Type = 2
+DisplayType = "Number (Signed 16-bit Integer)"
+TypeValid = True
+Direction = 1
+
+[CB_ForceArrayElement.TS.SData.Call.Parameters[3]]
+Name = "vForcedValue"
+ArgVal = "\"\""
+ArgDisplayVal = "\"\""
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_ForceArrayElement.TS.SData.Call.Parameters[4]]
+Name = "passFail"
+ArgVal = "Step.Result.PassFail"
+ArgDisplayVal = "Step.Result.PassFail"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[CB_ForceArrayElement.TS.SData.Call.Parameters[5]]
+Name = "errorMsg"
+ArgVal = "Step.Result.ReportText"
+ArgDisplayVal = "Step.Result.ReportText"
+Type = 8
+DisplayType = "String"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[DEF, CB_ForceArrayElement.Result]
+Error = "TYPE, Error"
+Status = Str
+PassFail = Bool
+ReportText = Str
+Common = "TYPE, CommonResults"
+
+[CB_ForceArrayElement.Result]
+%FLG: Error = 4194304
+%INSTFLG: Error = 4194304
+%INSTOVRD: Error = 4194304
+%FLG: Status = 4194304
+%INSTFLG: Status = 4194304
+PassFail = True
+%INSTOVRD: Common = 4194304
+
+[DEF, MessagePopup]
+%LOCATION = "StepTypes"
+Substeps = "TYPE, StepTypeSubstepsArray"
+DescriptionFormat = "TYPE, Expression"
+%FLG: DescriptionFormat = 524288
+DefaultNameFormat = "TYPE, Expression"
+%FLG: DefaultNameFormat = 524288
+Menu = "TYPE, StepTypeMenu"
+TS = "TYPE, TEInf"
+Result = Obj
+TitleExpr = "TYPE, Expression"
+MessageExpr = "TYPE, Expression"
+Button1Label = "TYPE, Expression"
+Button2Label = "TYPE, Expression"
+Button3Label = "TYPE, Expression"
+Button4Label = "TYPE, Expression"
+Button5Label = "TYPE, Expression"
+Button6Label = "TYPE, Expression"
+CenterDialog = Bool
+Position = Obj
+Modal = Bool
+ShowResponse = Bool
+MaxResponseLength = Num
+DefaultResponse = Str
+ButtonLocation = Num
+ActiveCtrl = Num
+DefaultButton = Num
+CancelButton = Num
+CodeTemplates = Str
+%FLG: CodeTemplates = 524288
+TimerButton = Num
+TimeToWait = Num
+%ROOT_TYPE = True
+
+[MessagePopup]
+%HI: Substeps = [1]
+%INSTFLG: Substeps = 524312
+%INSTOVRD: Substeps = 655384
+DescriptionFormat = "LocalizeExpression(Step.TitleExpr)"
+%FLG: DescriptionFormat = 4194328
+%INSTFLG: DescriptionFormat = 4718616
+%INSTOVRD: DescriptionFormat = 4718616
+DefaultNameFormat = "ResStr(\"MSG_BOX_STEP_TYPE\", \"DEF_STEP_NAME\")"
+%FLG: DefaultNameFormat = 4194328
+%INSTFLG: DefaultNameFormat = 4718616
+%INSTOVRD: DefaultNameFormat = 4718616
+%INSTFLG: Menu = 524312
+%INSTOVRD: Menu = 524312
+%INSTFLG: TS = 4456472
+%INSTOVRD: TS = 4456472
+%FLG: Result = 4194304
+%INSTFLG: Result = 4194304
+TitleExpr = "\"untitled\""
+%FLG: TitleExpr = 262144
+MessageExpr = "\"Your message here\""
+Button1Label = "\"OK\""
+Button2Label = "\"\""
+Button3Label = "\"\""
+Button4Label = "\"\""
+Button5Label = "\"\""
+Button6Label = "\"\""
+CenterDialog = True
+MaxResponseLength = 4096
+ActiveCtrl = 1
+DefaultButton = 1
+CancelButton = 1
+%FLG: CodeTemplates = 4194328
+%TIMESTAMP = 1045853182
+%VERSION = "3.0.0.12373"
+%TYPELASTMOD = "3.0.0.12373"
+%MINPRODVER = "3.0.0.0"
+%TYPE_FLG = 33554446
+
+[DEF, MessagePopup.Substeps]
+%[0] = Step
+%TYPE: %[0] = "PostSubstep"
+%[1] = Step
+%TYPE: %[1] = "EditSubstep"
+
+[DEF, MessagePopup.Substeps[0].TS]
+SData = "TYPE, FlexCStepAdditions"
+%FLG: SData = 2097152
+
+[MessagePopup.Substeps[0].TS.SData.Call]
+LibPath = "msgbox.dll"
+Func = "DisplayTimerMsgPopupEx"
+%HI: Parms = [17]
+
+[DEF, MessagePopup.Substeps[0].TS.SData.Call.Parms]
+%[0] = "TYPE, FCParameter"
+%[1] = "TYPE, FCParameter"
+%[2] = "TYPE, FCParameter"
+%[3] = "TYPE, FCParameter"
+%[4] = "TYPE, FCParameter"
+%[5] = "TYPE, FCParameter"
+%[6] = "TYPE, FCParameter"
+%[7] = "TYPE, FCParameter"
+%[8] = "TYPE, FCParameter"
+%[9] = "TYPE, FCParameter"
+%[10] = "TYPE, FCParameter"
+%[11] = "TYPE, FCParameter"
+%[12] = "TYPE, FCParameter"
+%[13] = "TYPE, FCParameter"
+%[14] = "TYPE, FCParameter"
+%[15] = "TYPE, FCParameter"
+%[16] = "TYPE, FCParameter"
+%[17] = "TYPE, FCParameter"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[0]]
+Name = "Return Value"
+ResultAct = 1
+Flags = 2
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[1]]
+Name = "context"
+Type = 4
+ObjType = 1
+ArgVal = "ThisContext"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[2]]
+Name = "titleExpr"
+Type = 2
+ArgVal = "Step.TitleExpr"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[3]]
+Name = "msgExpr"
+Type = 2
+ArgVal = "Step.MessageExpr"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[4]]
+Name = "buttonsExpressions"
+Type = 6
+%HI: ArrayDimensionsSize = [0]
+ArgVal = "{Step.Button1Label, Step.Button2Label, Step.Button3Label, Step.Button4Label, Step.Button5Label, Step.Button6Label}"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[5]]
+Name = "buttonArraySize"
+ArgVal = "6"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[6]]
+Name = "showReponseTextBox"
+ArgVal = "Step.ShowResponse"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[7]]
+Name = "initialResponseBuf"
+Type = 2
+ArgVal = "Step.DefaultResponse"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[8]]
+Name = "responseBufResult"
+Type = 4
+ObjType = 1
+ArgVal = "Step.Result.Response"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[9]]
+Name = "maxResponseBufLength"
+ArgVal = "Step.MaxResponseLength"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[10]]
+Name = "buttonLoc"
+ArgVal = "Step.ButtonLocation"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[11]]
+Name = "activeCtrl"
+ArgVal = "Step.ActiveCtrl"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[12]]
+Name = "defaultButton"
+ArgVal = "Step.DefaultButton"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[13]]
+Name = "cancelButton"
+ArgVal = "Step.CancelButton"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[14]]
+Name = "timeoutButton"
+ArgVal = "Step.TimerButton"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[15]]
+Name = "timeToWait"
+NumType = 7
+ArgVal = "Step.TimeToWait"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[16]]
+Name = "buttonHit"
+NumPass = 1
+ArgVal = "Step.Result.ButtonHit"
+
+[MessagePopup.Substeps[0].TS.SData.Call.Parms[17]]
+Name = "errorMessage"
+Type = 2
+StrPass = 2
+ArgVal = "Step.Result.Error.Msg"
+
+[MessagePopup.Substeps[0].TS]
+%INSTFLG: SData = 2097152
+%INSTOVRD: SData = 2097152
+ConnectionLifetime = 0
+
+[MessagePopup.Substeps[0]]
+%INSTFLG: TS = 262168
+%INSTOVRD: TS = 262168
+
+[MessagePopup.Substeps[0].Result]
+%INSTOVRD: Error = 4194304
+%INSTFLG: ReportText = 0
+%INSTOVRD: Common = 4194304
+
+[DEF, MessagePopup.Substeps[0]]
+%NAME = "Post"
+
+[DEF, MessagePopup.Substeps[1].TS]
+SData = "TYPE, FlexCStepAdditions"
+%FLG: SData = 2097152
+
+[MessagePopup.Substeps[1].TS.SData.Call]
+LibPath = "msgbox.dll"
+Func = "EditMessageBoxStep"
+%HI: Parms = [4]
+
+[DEF, MessagePopup.Substeps[1].TS.SData.Call.Parms]
+%[0] = "TYPE, FCParameter"
+%[1] = "TYPE, FCParameter"
+%[2] = "TYPE, FCParameter"
+%[3] = "TYPE, FCParameter"
+%[4] = "TYPE, FCParameter"
+
+[MessagePopup.Substeps[1].TS.SData.Call.Parms[0]]
+Name = "Return Value"
+ResultAct = 1
+Flags = 2
+
+[MessagePopup.Substeps[1].TS.SData.Call.Parms[1]]
+Name = "context"
+Type = 4
+ObjType = 1
+ArgVal = "ThisContext"
+
+[MessagePopup.Substeps[1].TS.SData.Call.Parms[2]]
+Name = "engine"
+Type = 4
+ObjType = 1
+ArgVal = "RunState.Engine"
+ArgDisplayVal = "RunState.Engine"
+
+[MessagePopup.Substeps[1].TS.SData.Call.Parms[3]]
+Name = "reserved"
+ArgVal = "0"
+
+[MessagePopup.Substeps[1].TS.SData.Call.Parms[4]]
+Name = "changed"
+NumPass = 1
+ArgVal = "RunState.InitialSelection.SelectedFile.ChangeCount"
+ArgDisplayVal = "RunState.InitialSelection.SelectedFile.ChangeCount"
+
+[MessagePopup.Substeps[1].TS]
+%INSTFLG: SData = 2097152
+%INSTOVRD: SData = 2097152
+ConnectionLifetime = 0
+
+[MessagePopup.Substeps[1]]
+%INSTFLG: TS = 262168
+%INSTOVRD: TS = 262168
+MenuName = "ResStr(\"MSG_BOX_STEP_TYPE\", \"EDIT_STEP_NAME\")"
+SupportsReadOnly = True
+
+[MessagePopup.Substeps[1].Result]
+%INSTOVRD: Error = 4194304
+%INSTFLG: ReportText = 0
+%INSTOVRD: Common = 4194304
+
+[DEF, MessagePopup.Substeps[1]]
+%NAME = "Edit"
+
+[MessagePopup.Menu]
+ItemName = "ResStr(\"MSG_BOX_STEP_TYPE\", \"MENU_ITEM_NAME\")"
+Group = "NI_Miscellaneous"
+
+[MessagePopup.TS]
+Icon = "MsgBox.ico"
+%INSTFLG: SData = 2097152
+%INSTOVRD: SData = 7143448
+ConnectionLifetime = 0
+LoopIncrement = ""
+LoopInitialize = ""
+CanSpecifyModule = False
+
+[DEF, MessagePopup.TS]
+SData = "TYPE, NoneStepAdditions"
+%FLG: SData = 2097152
+
+[DEF, MessagePopup.Result]
+Error = "TYPE, Error"
+Status = Str
+ButtonHit = Num
+Response = Str
+ReportText = Str
+Common = "TYPE, CommonResults"
+
+[MessagePopup.Result]
+%FLG: Error = 4194304
+%INSTFLG: Error = 4194304
+%INSTOVRD: Error = 4194304
+%FLG: Status = 4194304
+%INSTFLG: Status = 4194304
+%FLG: ButtonHit = 8192
+%INSTFLG: ButtonHit = 8192
+%FLG: Response = 10240
+%INSTFLG: Response = 10240
+%FLG: ReportText = 4194304
+%INSTFLG: ReportText = 4194304
+%INSTOVRD: Common = 4194304
+
+[DEF, MessagePopup.Position]
+Top = "TYPE, Expression"
+Left = "TYPE, Expression"
+
+[DEF, CB_TestArrayElement]
+%LOCATION = "StepTypes"
+Substeps = "TYPE, StepTypeSubstepsArray"
+DescriptionFormat = "TYPE, Expression"
+%FLG: DescriptionFormat = 524288
+DefaultNameFormat = "TYPE, Expression"
+%FLG: DefaultNameFormat = 524288
+Menu = "TYPE, StepTypeMenu"
+TS = "TYPE, TEInf"
+Result = Obj
+InBuf = Str
+DataSource = Str
+CodeTemplates = Str
+%FLG: CodeTemplates = 524288
+%ROOT_TYPE = True
+
+[CB_TestArrayElement]
+%HI: Substeps = [0]
+DescriptionFormat Line0001 = "\"Test the element \" + Step.TS.SData.Call.Parameters[2].ArgVal + \" of the array \" + Step.TS.SData.Call.Parameters[1]."
+DescriptionFormat Line0002 = "ArgVal + \" , instance \" + Step.TS.SData.Call.Parameters[0].ArgVal + \" with \" + Step.TS.SData.Call.Parameters[3].ArgV"
+DescriptionFormat Line0003 = "al + \" (variation: \" + Str(Step.TS.SData.Call.Parameters[4].ArgVal) + \" tolerance: \" + Str(Step.TS.SData.Call.Parame"
+DescriptionFormat Line0004 = "ters[5].ArgVal )  + \" % )\""
+%FLG: DescriptionFormat = 4194328
+%INSTFLG: DescriptionFormat = 4718616
+%INSTOVRD: DescriptionFormat = 4718616
+DefaultNameFormat = "\"Test an element of an array\""
+%FLG: DefaultNameFormat = 4194328
+%INSTFLG: DefaultNameFormat = 4718616
+%INSTOVRD: DefaultNameFormat = 4718616
+%INSTFLG: TS = 4194304
+%FLG: Result = 4194304
+%INSTFLG: Result = 4194304
+DataSource = "Step.Result.PassFail"
+CodeTemplates = "PassFail_Template|PassFailMFC_Template"
+%FLG: CodeTemplates = 24
+%COMMENT = "\n  "
+%TIMESTAMP = 1201268994
+%VERSION = "0.0.0.7"
+%TYPELASTMOD = "3.0.0.12373"
+%FLG = 9216
+%TYPE_FLG = 2
+
+[DEF, CB_TestArrayElement.Substeps]
+%[0] = Step
+%TYPE: %[0] = "EditSubstep"
+
+[DEF, CB_TestArrayElement.Substeps[0].TS]
+SData = "TYPE, AutomationStepAdditions"
+%FLG: SData = 2097152
+
+[CB_TestArrayElement.Substeps[0].TS.SData.Call]
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3 et CB3.0.1."
+CreateObject = 0
+CoClass = "{3153F69B-D9BA-4C88-84B5-C6663E5D63E3}"
+CoClassName = "affichage"
+Interface = "{D814E882-9683-41C4-A678-FF7E90C1890B}"
+InterfaceName = "_affichage"
+MemberType = 1
+Member = 1610809345
+MemberName = "editionCB"
+HasMemberInfo = True
+TypeLibVersion = "360.0"
+InterfaceType = 1
+VTableOffset = 32
+%HI: Parameters = [0]
+
+[DEF, CB_TestArrayElement.Substeps[0].TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+
+[CB_TestArrayElement.Substeps[0].TS.SData.Call.Parameters[0]]
+Name = "SeqContext"
+ArgVal = "ThisContext"
+ArgDisplayVal = "ThisContext"
+Type = 9
+DisplayType = "SequenceContext (Object Reference)"
+TypeValid = True
+Direction = 3
+IsByRef = True
+IID = "{6427D0E0-E410-11D0-93B4-0020AF68E893}"
+
+[CB_TestArrayElement.Substeps[0].TS]
+%INSTOVRD: SData = 7274520
+ConnectionLifetime = 0
+
+[CB_TestArrayElement.Substeps[0]]
+%INSTFLG: TS = 0
+
+[CB_TestArrayElement.Substeps[0].Result]
+%INSTOVRD: Error = 4194304
+%INSTFLG: ReportText = 0
+
+[DEF, CB_TestArrayElement.Substeps[0]]
+%NAME = "Edit_Parameters"
+
+[CB_TestArrayElement.Menu]
+ItemName = "\"Test an element of an array\""
+Group = "Read\\\\Write\\\\Test CB variables"
+
+[CB_TestArrayElement.TS]
+Icon = "ExprBrowse.ico"
+ConnectionLifetime = 0
+StatusExpr Line0001 = "Step.DataSource != \"Step.Result.PassFail\" ? Step.Result.PassFail = Evaluate(Step.DataSource) : False, Step.Result.Pass"
+StatusExpr Line0002 = "Fail ? \"Passed\" : \"Failed\" "
+%INSTFLG: StatusExpr = 1
+%INSTOVRD: StatusExpr = 5046297
+
+[DEF, CB_TestArrayElement.TS]
+SData = "TYPE, AutomationStepAdditions"
+%FLG: SData = 2097152
+
+[CB_TestArrayElement.TS.SData.Call]
+ObjectVariable = "FileGlobals.cb"
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3.0 et CB3.32"
+CoClass = "{B51A0060-36D9-4E5C-AB1A-65720FD2E9CA}"
+CoClassName = "ControlBuild"
+Interface = "{A1C02E91-B920-4049-9832-51D70EE7E43C}"
+InterfaceName = "_ControlBuild"
+MemberType = 1
+Member = 1610809400
+MemberName = "CB_TestArrayElement"
+HasMemberInfo = True
+Locale = 1036
+TypeLibVersion = "348.0"
+InterfaceType = 1
+VTableOffset = 344
+%HI: Parameters = [8]
+
+[DEF, CB_TestArrayElement.TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+%[1] = "TYPE, AutomationParameter"
+%[2] = "TYPE, AutomationParameter"
+%[3] = "TYPE, AutomationParameter"
+%[4] = "TYPE, AutomationParameter"
+%[5] = "TYPE, AutomationParameter"
+%[6] = "TYPE, AutomationParameter"
+%[7] = "TYPE, AutomationParameter"
+%[8] = "TYPE, AutomationParameter"
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[0]]
+Name = "strInstanceName"
+ArgVal = "\"\""
+ArgDisplayVal = "\"\""
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[1]]
+Name = "strVariableName"
+ArgVal = "\"\""
+ArgDisplayVal = "\"\""
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[2]]
+Name = "nIndex"
+ArgVal = "0"
+ArgDisplayVal = "0"
+Type = 2
+DisplayType = "Number (Signed 16-bit Integer)"
+TypeValid = True
+Direction = 1
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[3]]
+Name = "AwaitedValue"
+ArgVal = "\"\""
+ArgDisplayVal = "\"\""
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[4]]
+Name = "nVariation"
+ArgVal = "0"
+ArgDisplayVal = "0"
+Type = 5
+DisplayType = "Number (64-bit Floating Point)"
+TypeValid = True
+Direction = 1
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[5]]
+Name = "nVariationPercent"
+ArgVal = "100"
+ArgDisplayVal = "100"
+Type = 5
+DisplayType = "Number (64-bit Floating Point)"
+TypeValid = True
+Direction = 1
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[6]]
+Name = "passFail"
+ArgVal = "Step.Result.PassFail"
+ArgDisplayVal = "Step.Result.PassFail"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[7]]
+Name = "errorMsg"
+ArgVal = "Step.Result.ReportText"
+ArgDisplayVal = "Step.Result.ReportText"
+Type = 8
+DisplayType = "String"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[CB_TestArrayElement.TS.SData.Call.Parameters[8]]
+Name = "lTimeout_ms"
+Type = 3
+DisplayType = "Number (Signed 32-bit Integer)"
+TypeValid = True
+Direction = 1
+IsUserOptional = True
+IsServerOptional = True
+
+[DEF, CB_TestArrayElement.Result]
+Error = "TYPE, Error"
+Status = Str
+PassFail = Bool
+ReportText = Str
+Common = "TYPE, CommonResults"
+
+[CB_TestArrayElement.Result]
+%FLG: Error = 4194304
+%INSTFLG: Error = 4194304
+%INSTOVRD: Error = 4194304
+%FLG: Status = 4194304
+%INSTFLG: Status = 4194304
+PassFail = True
+%INSTOVRD: Common = 4194304
+
+[DEF, CB_QuickInit]
+%LOCATION = "StepTypes"
+Substeps = "TYPE, StepTypeSubstepsArray"
+DescriptionFormat = "TYPE, Expression"
+%FLG: DescriptionFormat = 524288
+DefaultNameFormat = "TYPE, Expression"
+%FLG: DefaultNameFormat = 524288
+Menu = "TYPE, StepTypeMenu"
+TS = "TYPE, TEInf"
+Result = Obj
+InBuf = Str
+DataSource = Str
+CodeTemplates = Str
+%FLG: CodeTemplates = 524288
+%ROOT_TYPE = True
+
+[CB_QuickInit]
+%HI: Substeps = [0]
+DescriptionFormat Line0001 = "\"Initialize CB QuickAccess with the project \" + Step.TS.SData.Call.Parameters[3].ArgVal + \" of path \"  + Step.TS.SDa"
+DescriptionFormat Line0002 = "ta.Call.Parameters[2].ArgVal + \", and with the conf  \"  + Step.TS.SData.Call.Parameters[4].ArgVal"
+%FLG: DescriptionFormat = 4194328
+%INSTFLG: DescriptionFormat = 4718616
+%INSTOVRD: DescriptionFormat = 4718616
+DefaultNameFormat = "\"Initialize CB quick access\""
+%FLG: DefaultNameFormat = 4194328
+%INSTFLG: DefaultNameFormat = 4718616
+%INSTOVRD: DefaultNameFormat = 4718616
+%INSTFLG: TS = 4194304
+%FLG: Result = 4194304
+%INSTFLG: Result = 4194304
+DataSource = "Step.Result.PassFail"
+CodeTemplates = "PassFail_Template|PassFailMFC_Template"
+%FLG: CodeTemplates = 24
+%COMMENT = "\n  "
+%TIMESTAMP = 1207752010
+%VERSION = "2.7.1"
+%TYPELASTMOD = "3.0.0.12373"
+%TYPE_FLG = 2
+
+[DEF, CB_QuickInit.Substeps]
+%[0] = Step
+%TYPE: %[0] = "EditSubstep"
+
+[DEF, CB_QuickInit.Substeps[0].TS]
+SData = "TYPE, AutomationStepAdditions"
+%FLG: SData = 2097152
+
+[CB_QuickInit.Substeps[0].TS.SData.Call]
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3 et CB3.0.1."
+CreateObject = 0
+CoClass = "{3153F69B-D9BA-4C88-84B5-C6663E5D63E3}"
+CoClassName = "affichage"
+Interface = "{C6CD374F-AA1B-482C-849A-0BB8E8C9B397}"
+InterfaceName = "_affichage"
+MemberType = 1
+Member = 1610809344
+MemberName = "edition"
+HasMemberInfo = True
+TypeLibVersion = "2f1.0"
+InterfaceType = 1
+VTableOffset = 28
+%HI: Parameters = [1]
+
+[DEF, CB_QuickInit.Substeps[0].TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+%[1] = "TYPE, AutomationParameter"
+
+[CB_QuickInit.Substeps[0].TS.SData.Call.Parameters[0]]
+Name = "Step"
+ArgVal = "ThisContext.step"
+ArgDisplayVal = "ThisContext.step"
+Type = 9
+DisplayType = "PropertyObject (Object Reference)"
+TypeValid = True
+Direction = 3
+IsByRef = True
+IID = "{8D8769A0-09C0-11D1-93BD-0020AF68E893}"
+
+[CB_QuickInit.Substeps[0].TS.SData.Call.Parameters[1]]
+Name = "SeqContext"
+ArgVal = "ThisContext"
+ArgDisplayVal = "ThisContext"
+Type = 9
+DisplayType = "SequenceContext (Object Reference)"
+TypeValid = True
+Direction = 3
+IsByRef = True
+IID = "{6427D0E0-E410-11D0-93B4-0020AF68E893}"
+
+[CB_QuickInit.Substeps[0].TS]
+%INSTOVRD: SData = 7274520
+ConnectionLifetime = 0
+
+[CB_QuickInit.Substeps[0]]
+%INSTFLG: TS = 0
+
+[CB_QuickInit.Substeps[0].Result]
+%INSTOVRD: Error = 4194304
+%INSTFLG: ReportText = 0
+
+[DEF, CB_QuickInit.Substeps[0]]
+%NAME = "Edit"
+
+[CB_QuickInit.Menu]
+ItemName = "\"Initialize CB QuickAccess connector\""
+Group = "CB_Quick Access"
+
+[CB_QuickInit.TS]
+Icon = "HTBasicAdp.ico"
+ConnectionLifetime = 0
+StatusExpr Line0001 = "Step.DataSource != \"Step.Result.PassFail\" ? Step.Result.PassFail = Evaluate(Step.DataSource) : False, Step.Result.Pass"
+StatusExpr Line0002 = "Fail ? \"Passed\" : \"Failed\" "
+%INSTFLG: StatusExpr = 1
+%INSTOVRD: StatusExpr = 5046297
+
+[DEF, CB_QuickInit.TS]
+SData = "TYPE, AutomationStepAdditions"
+%FLG: SData = 2097152
+
+[CB_QuickInit.TS.SData.Call]
+ObjectVariable = "FileGlobals.cb"
+Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
+ServerName = "Interface between TestStand3.0 - CB4.0 - RP"
+CoClass = "{B51A0060-36D9-4E5C-AB1A-65720FD2E9CA}"
+CoClassName = "ControlBuild"
+Interface = "{A319A5F0-883F-4EAF-9F67-77FAE6233D18}"
+InterfaceName = "_ControlBuild"
+MemberType = 1
+Member = 1610809440
+MemberName = "CB_QuickInit"
+HasMemberInfo = True
+Locale = 1036
+TypeLibVersion = "4d1.0"
+InterfaceType = 1
+VTableOffset = 496
+%HI: Parameters = [8]
+
+[DEF, CB_QuickInit.TS.SData.Call.Parameters]
+%[0] = "TYPE, AutomationParameter"
+%[1] = "TYPE, AutomationParameter"
+%[2] = "TYPE, AutomationParameter"
+%[3] = "TYPE, AutomationParameter"
+%[4] = "TYPE, AutomationParameter"
+%[5] = "TYPE, AutomationParameter"
+%[6] = "TYPE, AutomationParameter"
+%[7] = "TYPE, AutomationParameter"
+%[8] = "TYPE, AutomationParameter"
+
+[CB_QuickInit.TS.SData.Call.Parameters[0]]
+Name = "bIsEmbedded"
+ArgVal = "True"
+ArgDisplayVal = "True"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[1]]
+Name = "bEnableCheckDuringForce"
+ArgVal = "False"
+ArgDisplayVal = "False"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[2]]
+Name = "strProjectpath"
+ArgVal = "FileGlobals.CB_Path_Name"
+ArgDisplayVal = "FileGlobals.CB_Path_Name"
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[3]]
+Name = "strApplicationName"
+ArgVal = "FileGlobals.CB_Project_Name"
+ArgDisplayVal = "FileGlobals.CB_Project_Name"
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[4]]
+Name = "strConfName"
+ArgVal = "FileGlobals.CB_Task_Name"
+ArgDisplayVal = "FileGlobals.CB_Task_Name"
+Type = 12
+DisplayType = "Variant"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[5]]
+Name = "bForceSubscription"
+ArgVal = "False"
+ArgDisplayVal = "False"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[6]]
+Name = "lWaitingTimeForMessageSent"
+ArgVal = "0"
+ArgDisplayVal = "0"
+Type = 3
+DisplayType = "Number (Signed 32-bit Integer)"
+TypeValid = True
+Direction = 1
+
+[CB_QuickInit.TS.SData.Call.Parameters[7]]
+Name = "passFail"
+ArgVal = "Step.Result.PassFail"
+ArgDisplayVal = "Step.Result.PassFail"
+Type = 11
+DisplayType = "Boolean"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[CB_QuickInit.TS.SData.Call.Parameters[8]]
+Name = "errorMsg"
+ArgVal = "Step.Result.ReportText"
+ArgDisplayVal = "Step.Result.ReportText"
+Type = 8
+DisplayType = "String"
+TypeValid = True
+Direction = 3
+IsByRef = True
+
+[DEF, CB_QuickInit.Result]
+Error = "TYPE, Error"
+Status = Str
+PassFail = Bool
+ReportText = Str
+Common = "TYPE, CommonResults"
+
+[CB_QuickInit.Result]
 %FLG: Error = 4194304
 %INSTFLG: Error = 4194304
 %INSTOVRD: Error = 4194304
