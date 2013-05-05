@@ -1,11 +1,10 @@
 CB_ForceArrayElement(SeqIdx, InstrIdx, Instruction) ::= <<
-$InstructionHeader(SeqIdx, InstrIdx, Instruction)$Id = "ID#:$Instruction.GUID$"
-
+$InstructionHeader(SeqIdx, InstrIdx, Instruction)$
 [DEF, SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS]
 SData = "TYPE, AutomationStepAdditions"
 
 [SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS.SData.Call]
-ObjectVariable = "$Instruction.Location$"
+ObjectVariable = "$Instruction.Variable.Location$"
 Server = "{1E52CADB-5F9E-4E14-992F-C317D7B79AE2}"
 ServerName = "Interface between TestStand3.0 - CB4.0 - RP"
 CoClass = "{B51A0060-36D9-4E5C-AB1A-65720FD2E9CA}"
@@ -32,8 +31,8 @@ VTableOffset = 596
 
 [SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS.SData.Call.Parameters[0]]
 Name = "strInstanceName"
-ArgVal = "\"$Instruction.Path$\""
-ArgDisplayVal = "\"$Instruction.Path$\""
+ArgVal = "\"$Instruction.Variable.Path$\""
+ArgDisplayVal = "\"$Instruction.Variable.Path$\""
 Type = 12
 DisplayType = "Variant"
 TypeValid = True
@@ -41,8 +40,8 @@ Direction = 1
 
 [SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS.SData.Call.Parameters[1]]
 Name = "strVariableName"
-ArgVal = "\"$Instruction.Name$\""
-ArgDisplayVal = "\"$Instruction.Name$\""
+ArgVal = "\"$Instruction.Variable.Name$\""
+ArgDisplayVal = "\"$Instruction.Variable.Name$\""
 Type = 12
 DisplayType = "Variant"
 TypeValid = True
@@ -59,8 +58,8 @@ Direction = 1
 
 [SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS.SData.Call.Parameters[3]]
 Name = "vForcedValue"
-ArgVal = "$Instruction.Value$"
-ArgDisplayVal = "$Instruction.Value$"
+ArgVal = "$Instruction.Variable.Value$"
+ArgDisplayVal = "$Instruction.Variable.Value$"
 Type = 12
 DisplayType = "Variant"
 TypeValid = True
@@ -87,9 +86,9 @@ Direction = 3
 IsByRef = True
 
 [SF.Seq[$SeqIdx$].Main[$InstrIdx$]]
-InBuf = "\"$Instruction.Path$\""
+InBuf = "\"$Instruction.Variable.Path$\""
 
 [DEF, SF.Seq[$SeqIdx$].Main[$InstrIdx$]]
-%NAME = "Force $Instruction.Name$[$Instruction.Index$] to $Instruction.Value$"
+%NAME = "Force $Instruction.Variable.Name$[$Instruction.Index$] to $Instruction.Variable.Value$"
 
 >>

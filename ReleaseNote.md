@@ -15,10 +15,6 @@ Source code : [ValToolMgr_0.0.4](https://github.com/AlstomTCMS/ValToolMgr/tree/V
 
 List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=5&state=closed)
 
-Main points :
- * [#55](https://github.com/AlstomTCMS/ValToolMgr/issues/55) : QuickAccess is enabled by default;
- * [#47](https://github.com/AlstomTCMS/ValToolMgr/issues/47) : Multiple units is enabled, with most common function (One section is mapped to one testbench computer). Refers to https://github.com/AlstomTCMS/ValToolMgrDoc/blob/master/Specification/SpecificationLocation.md for details.
- 
 Main limitations :
  * [#62](https://github.com/AlstomTCMS/ValToolMgr/issues/62) : No possibility to unforce arrays.
  * [#63](https://github.com/AlstomTCMS/ValToolMgr/issues/63) : Generate .SEQ where is saved XLS file, with same name as the XLS file.

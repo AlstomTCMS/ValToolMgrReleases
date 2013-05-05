@@ -2,19 +2,20 @@
 <!-- DOCTYPE Configuration SYSTEM "configuration-0.1.dtd" -->
 <Configuration>
   <LocationDefinitions>
-    <Location name="Unit1/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB1" />
-	<Location name="Unit2/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB2" />
-	<Location name="Unit1/MPU1" strategy="SingleLocationToSingleTarget" targetConfig="SECTION1_MPU_A" />
-	<Location name="Unit1/MPU2" strategy="SingleLocationToSingleTarget" targetConfig="SECTION1_MPU_T" />
-	<Location name="Unit2/MPU1" strategy="SingleLocationToSingleTarget" targetConfig="SECTION2_MPU_A" />
-	<Location name="Unit2/MPU2" strategy="SingleLocationToSingleTarget" targetConfig="SECTION2_MPU_T" />
+	<Location name="Section1/MPU_A" strategy="SingleLocationToSingleTarget" targetConfig="EMB1" />
+	<Location name="Section1/MPU_T" strategy="SingleLocationToSingleTarget" targetConfig="EMB2" />
+	<Location name="Section2/MPU_A" strategy="SingleLocationToSingleTarget" targetConfig="EMB3" />
+	<Location name="Section2/MPU_T" strategy="SingleLocationToSingleTarget" targetConfig="EMB4" />
+	<Location name="Section1/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB1" />
+	<Location name="Section2/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB1" />
   </LocationDefinitions>
   <TargetDefinitions>
-    <Target name="TB1" testStandIdentifier="Fileglobals.env1" />
-	<Target name="TB2" testStandIdentifier="Fileglobals.env2" />
-    <Target name="SECTION1_MPU_A" testStandIdentifier="Fileglobals.cb1" />
-    <Target name="SECTION1_MPU_T" testStandIdentifier="Fileglobals.cb2" />
-    <Target name="SECTION2_MPU_A" testStandIdentifier="Fileglobals.cb3" />
-    <Target name="SECTION2_MPU_T" testStandIdentifier="Fileglobals.cb4" />
+	<Target name="EMB1" testStandIdentifier="FileGlobals.CbEmb1" />
+	<Target name="EMB2" testStandIdentifier="FileGlobals.CbEmb2" />
+	<Target name="EMB3" testStandIdentifier="FileGlobals.CbEmb3" />
+	<Target name="EMB4" testStandIdentifier="FileGlobals.CbEmb4" />
+    <Target name="TB1" testStandIdentifier="Fileglobals.CbEmb7" />
+	<Target name="TB2" testStandIdentifier="FileGlobals.CbEmb8" />
+    <Target name="TrainTracerProject" traintracerIdentifier="Fileglobals.WebMaintenance" />
   </TargetDefinitions>
 </Configuration>

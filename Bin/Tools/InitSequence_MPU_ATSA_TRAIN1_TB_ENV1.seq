@@ -1,12 +1,10 @@
-MainTemplate(TestStandFile) ::= <<
-
 [__Header__]
 ProductName = "TestStand"
 ProductVersion = 3.0.0.12373
 CompatibleProdVersion = 3.0.0.0
 Version = 172
 Type = "SequenceFile"
-Path = "C:\\macros_alstom\\test\\genTest-ref.seq"
+Path = "C:\\macros_alstom\\Tools\\InitSequence_MPU_ATSA_TRAIN1_TB_ENV1.seq"
 ProductVersionString = "3.0 (3.0.0.12373)"
 CharEncoding = "SBCS"
 
@@ -39,11 +37,7 @@ RP_StopServer = StepType
 RP_ReadConfig = StepType
 RP_ResetConfig = StepType
 RP_StartAllEqt = StepType
-DotNetStepAdditions = DotNetModule
-DotNetParameter = DotNetParameter
-Variable_Force = StepType
-Variable_Read_Test = StepType
-Statement = StepType
+SequenceArgument = Argument
 
 [DEF, SF]
 Seq = Objs
@@ -59,7 +53,7 @@ ModelOption = Num
 %NAME = "Data"
 
 [SF]
-%HI: Seq = [1]
+%HI: Seq = [0]
 %FLG: Seq = 4194304
 %FLG: FileGlobalDefaults = 4194304
 %FLG: ModelFile = 4194312
@@ -77,7 +71,6 @@ BatchSync = 1
 
 [DEF, SF.Seq]
 %[0] = Sequence
-%[1] = Sequence
 
 [DEF, SF.Seq[0]]
 Parameters = Obj
@@ -93,11 +86,12 @@ RTS = Obj
 [SF.Seq[0]]
 %FLG: Parameters = 4456448
 %FLG: Locals = 4194304
-$if(TestStandFile.HeaderList)$%HI: Main = [$TestStandFile.HeaderList.Max$]$endif$
+%HI: Main = [1]
 %FLG: Main = 4194304
-%HI: Setup = [8]
+%HI: Setup = [0]
 %FLG: Setup = 4194304
 %FLG: Cleanup = 4194304
+GotoCleanupOnFail = True
 %FLG: GotoCleanupOnFail = 4194312
 RecordResults = True
 %FLG: RecordResults = 4194312
@@ -121,100 +115,117 @@ HARD = Str
 EACB_File = "C:\\Russian_2ES5_EnvTest_1_0_0\\Workbench\\build\\conf_banc_env\\embedded\\target_testbench\\EACB.xml"
 HARD = "C:\\Russian_2ES5_EnvTest_1_0_0\\Workbench\\build\\conf_banc_env\\embedded\\target_testbench\\HARD.xml"
 
-$if(TestStandFile.HeaderList)$
 [DEF, SF.Seq[0].Main]
-$TestStandFile.HeaderList:{s|
-%[$i0$] = Step
-%TYPE: %[$i0$] = "$s.InstructionName$"
-}$
-$TestStandFile.HeaderList:{item |
-$(item.InstructionName)( "0", i0, item)
+%[0] = Step
+%TYPE: %[0] = "Label"
+%[1] = Step
+%TYPE: %[1] = "NI_Wait"
 
-$}$
-$endif$
+[SF.Seq[0].Main[0].TS]
+Id = "ID#:JtMJF+J+QkG4mfuTU5zFSD"
+
+[DEF, SF.Seq[0].Main[0]]
+%NAME = "Loop index"
+
+[SF.Seq[0].Main[1].TS]
+Id = "ID#:RlvsDwq+LE6CBZ+xuk6b/A"
+PassAct = "Goto"
+FailAct = "Goto"
+PassActTarget = "\"ID#:y4gAHwVyGkm1agzgygI9FA\""
+FailActTarget = "\"ID#:y4gAHwVyGkm1agzgygI9FA\""
+CustExpr = "True"
+CustTrueAct = "Goto"
+CustTrueActTarget = "\"ID#:JtMJF+J+QkG4mfuTU5zFSD\""
+
+[SF.Seq[0].Main[1]]
+SeqCallStepGroupIdx = -1
+TimeExpr = "60"
+
+[DEF, SF.Seq[0].Main[1]]
+%NAME = "Wait  seconds"
 
 [DEF, SF.Seq[0].Setup]
 %[0] = Step
-%TYPE: %[0] = "Statement"
-%[1] = Step
-%TYPE: %[1] = "Statement"
-%[2] = Step
-%TYPE: %[2] = "Statement"
-%[3] = Step
-%TYPE: %[3] = "Statement"
-%[4] = Step
-%TYPE: %[4] = "Statement"
-%[5] = Step
-%TYPE: %[5] = "Statement"
-%[6] = Step
-%TYPE: %[6] = "Statement"
-%[7] = Step
-%TYPE: %[7] = "Statement"
-%[8] = Step
-%TYPE: %[8] = "Statement"
+%TYPE: %[0] = "SequenceCall"
 
 [SF.Seq[0].Setup[0].TS]
-Id = "ID#:sFBjEI3Am0+svYDDcGLg0C"
-PostExpr = "FileGlobals.WebMaintenance = StationGlobals.TrainTracer.WebMaintenance"
+Id = "ID#:sRu/OyX2Uk+dfbl/Q0C9FD"
+
+[DEF, SF.Seq[0].Setup[0].TS]
+SData = "TYPE, SeqCallStepAdditions"
+
+[SF.Seq[0].Setup[0].TS.SData]
+SFPath = "TestStandFunctions.seq"
+SeqName = "RealTargetInitialiser"
+%FLG: Prototype = 262144
+
+[DEF, SF.Seq[0].Setup[0].TS.SData]
+ActualArgs = Arguments
+Prototype = Obj
+
+[DEF, SF.Seq[0].Setup[0].TS.SData.ActualArgs]
+CbReference = "TYPE, SequenceArgument"
+TestBenchEthAddress = "TYPE, SequenceArgument"
+CbPathName = "TYPE, SequenceArgument"
+CbProjectName = "TYPE, SequenceArgument"
+CbApplicationName = "TYPE, SequenceArgument"
+CbTaskName = "TYPE, SequenceArgument"
+CbConfiguration = "TYPE, SequenceArgument"
+CbTarget = "TYPE, SequenceArgument"
+TargetEthAddress = "TYPE, SequenceArgument"
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbReference]
+UseDef = False
+Expr = "StationGlobals.ControlBuildPtr.CbPtr_emb1"
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.TestBenchEthAddress]
+UseDef = False
+Expr = "\"192.168.1.201\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbPathName]
+UseDef = False
+Expr = "\"C:\\\\2es5_atsa\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbProjectName]
+UseDef = False
+Expr = "\"Russian_2ES5.cbp\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbApplicationName]
+UseDef = False
+Expr = "\"russian_2es5\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbTaskName]
+UseDef = False
+Expr = "\"russian_2es5\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbConfiguration]
+UseDef = False
+Expr = "\"conf_banc\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.CbTarget]
+UseDef = False
+Expr = "\"target_mpu_SIL0\""
+
+[SF.Seq[0].Setup[0].TS.SData.ActualArgs.TargetEthAddress]
+UseDef = False
+Expr = "\"192.168.1.1\""
+
+[DEF, SF.Seq[0].Setup[0].TS.SData.Prototype]
+CbReference = Ref
+TestBenchEthAddress = Str
+CbPathName = Str
+CbProjectName = Str
+CbApplicationName = Str
+CbTaskName = Str
+CbConfiguration = Str
+CbTarget = Str
+TargetEthAddress = Str
+
+[SF.Seq[0].Setup[0].TS.SData.Prototype]
+%FLG: CbReference = 4
 
 [DEF, SF.Seq[0].Setup[0]]
-%NAME = "Copy Traintracer project references"
-
-[SF.Seq[0].Setup[1].TS]
-Id = "ID#:OZLBiCRcQUO/lDbyxcTkVB"
-PostExpr = "FileGlobals.CbEmb1= StationGlobals.ControlBuildPtr.CbPtr_emb1"
-
-[DEF, SF.Seq[0].Setup[1]]
-%NAME = "Copy Embedded1 project references"
-
-[SF.Seq[0].Setup[2].TS]
-Id = "ID#:zqkp4ZN6ZUSItjai6kkc6C"
-PostExpr = "FileGlobals.CbEmb2= StationGlobals.ControlBuildPtr.CbPtr_emb2"
-
-[DEF, SF.Seq[0].Setup[2]]
-%NAME = "Copy Embedded2 project references"
-
-[SF.Seq[0].Setup[3].TS]
-Id = "ID#:uG7yCx6kg0idI/WnRVHhIC"
-PostExpr = "FileGlobals.CbEmb3= StationGlobals.ControlBuildPtr.CbPtr_emb3"
-
-[DEF, SF.Seq[0].Setup[3]]
-%NAME = "Copy Embedded3 project references"
-
-[SF.Seq[0].Setup[4].TS]
-Id = "ID#:feYbtVm5t0qrooqZV1PeIC"
-PostExpr = "FileGlobals.CbEmb4= StationGlobals.ControlBuildPtr.CbPtr_emb4"
-
-[DEF, SF.Seq[0].Setup[4]]
-%NAME = "Copy Embedded4 project references"
-
-[SF.Seq[0].Setup[5].TS]
-Id = "ID#:YjKdiRHgQE6rJO/BcUC4XC"
-PostExpr = "FileGlobals.CbEmb5= StationGlobals.ControlBuildPtr.CbPtr_emb5"
-
-[DEF, SF.Seq[0].Setup[5]]
-%NAME = "Copy Embedded5 project references"
-
-[SF.Seq[0].Setup[6].TS]
-Id = "ID#:Vfo+S7kSHE2oSV5skDRwLA"
-PostExpr = "FileGlobals.CbEmb6= StationGlobals.ControlBuildPtr.CbPtr_emb6"
-
-[DEF, SF.Seq[0].Setup[6]]
-%NAME = "Copy Embedded6 project references"
-
-[SF.Seq[0].Setup[7].TS]
-Id = "ID#:KdoNygbjhkyh4Yeihz2OMC"
-PostExpr = "FileGlobals.CbEmb7= StationGlobals.ControlBuildPtr.CbPtr_emb7"
-
-[DEF, SF.Seq[0].Setup[7]]
-%NAME = "Copy Embedded7 project references"
-
-[SF.Seq[0].Setup[8].TS]
-Id = "ID#:Dz0YUMfUbkajteWnP2+7fB"
-PostExpr = "FileGlobals.CbEmb8= StationGlobals.ControlBuildPtr.CbPtr_emb8"
-
-[DEF, SF.Seq[0].Setup[8]]
-%NAME = "Copy Embedded8 project references"
+%NAME = "Init EMB3_Copy"
 
 [DEF, SF.Seq[0].RTS]
 Type = Num
@@ -257,7 +268,6 @@ CopyStepsOnOverriding = True
 Priority = 2953567917
 %FLG: Priority = 4194304
 
-$TestStandFile.Sequences:{s |$SequenceBody(i, s)$}$
 [DEF, SF.FileGlobalDefaults]
 Perf = Ref
 FIP = Ref
@@ -276,52 +286,35 @@ IHMAcquisition = Ref
 LS = Ref
 cb1 = Ref
 cb_1 = Ref
+Remote_1 = Ref
+Remote_2 = Ref
 trameParam = Str
 LectureBool = Bool
 Type_simu = Num
 Flange_Clock_Time = Bool
 Result_Button = Num
 InitDone = Bool
-DDU_ScreenShot = Bool
-DDU_ip = Str
 cycle_CB = Num
 TimeOut = Num
 Var1 = Str
+WebMaintenance = Ref
 Var2 = Str
 Var3 = Str
 Var4 = Str
 Var5 = Str
+WebMaintenance1 = Ref
 Var6 = Str
 Var7 = Str
 Var8 = Str
 Var9 = Str
 Var10 = Str
 Var11 = Str
-WebMaintenance = Ref
-CbEnv = Ref
-CbEnv1 = Ref
-CbEnv2 = Ref
-CbEnv3 = Ref
-CbEnv4 = Ref
-CbEnv5 = Ref
-CbEnv6 = Ref
-CbEnv7 = Ref
-CbEnv8 = Ref
-CbEmb = Ref
-CbEmb1 = Ref
-CbEmb2 = Ref
-CbEmb3 = Ref
-CbEmb4 = Ref
-CbEmb5 = Ref
-CbEmb6 = Ref
-CbEmb7 = Ref
-CbEmb8 = Ref
+SynchronizationName = Str
 
 [SF.FileGlobalDefaults]
-DDU_ScreenShot = True
-DDU_ip = "10.22.98.17"
 cycle_CB = 0.05
 TimeOut = 5000
+SynchronizationName = "CBRendezVous"
 
 [%TYPES]
 Path = "Path"
@@ -351,11 +344,7 @@ RP_StopServer = "RP_StopServer"
 RP_ReadConfig = "RP_ReadConfig"
 RP_ResetConfig = "RP_ResetConfig"
 RP_StartAllEqt = "RP_StartAllEqt"
-DotNetStepAdditions = "DotNetStepAdditions"
-DotNetParameter = "DotNetParameter"
-Variable_Force = "Variable_Force"
-Variable_Read_Test = "Variable_Read_Test"
-Statement = "Statement"
+SequenceArgument = "SequenceArgument"
 
 [DEF, Path]
 %LOCATION = "StdTypes"
@@ -477,7 +466,7 @@ ConnectionLifetime = 0
 
 [CB_Init.Menu]
 ItemName = "\"Initialize CB\""
-Group = "Start\\\\Stop CB"
+Group = "Start\\Stop CB"
 
 [CB_Init.TS]
 Icon = "ExprBrowse.ico"
@@ -1817,7 +1806,7 @@ CodeTemplates = "PassFail_Template|PassFailMFC_Template"
 
 [RP_Init.Menu]
 ItemName = "\"Initialize calls to R/P servers\""
-Group = "Start\\\\Stop Testbench"
+Group = "Start\\Stop Testbench"
 
 [RP_Init.TS]
 Icon = "ni_ThreadPriority.ico"
@@ -1952,7 +1941,7 @@ CodeTemplates = "PassFail_Template|PassFailMFC_Template"
 
 [RP_Close.Menu]
 ItemName = "\"Terminate R/P calls\""
-Group = "Start\\\\Stop Testbench"
+Group = "Start\\Stop Testbench"
 
 [RP_Close.TS]
 Icon = "ni_ThreadPriority.ico"
@@ -2130,7 +2119,7 @@ ConnectionLifetime = 0
 
 [RP_StartServer.Menu]
 ItemName = "\"Start R/P Server\""
-Group = "Start\\\\Stop Testbench"
+Group = "Start\\Stop Testbench"
 
 [RP_StartServer.TS]
 Icon = "ni_ThreadPriority.ico"
@@ -2318,7 +2307,7 @@ ConnectionLifetime = 0
 
 [RP_StopServer.Menu]
 ItemName = "\"Stop R/P Server\""
-Group = "Start\\\\Stop Testbench"
+Group = "Start\\Stop Testbench"
 
 [RP_StopServer.TS]
 Icon = "ni_ThreadPriority.ico"
@@ -2986,640 +2975,18 @@ Common = "TYPE, CommonResults"
 PassFail = True
 %INSTOVRD: Common = 4194304
 
-[DEF, DotNetStepAdditions]
+[DEF, SequenceArgument]
 %LOCATION = "StdTypes"
-Call = DotNetCall
-ModuleSrcPath = "TYPE, Path"
-ModulePrjPath = "TYPE, Path"
-ModuleSlnPath = "TYPE, Path"
-FunctionName = Str
+UseDef = Bool
+Expr = "TYPE, Expression"
 %ROOT_TYPE = True
 
-[DEF, DotNetStepAdditions.Call]
-AssemblyPath = "TYPE, Path"
-AssemblyStrongName = Str
-AssemblyLocation = Num
-ClassVariable = "TYPE, Expression"
-ClassName = Str
-IsStruct = Bool
-CreateInstance = Bool
-DisposeCreatedInstance = Bool
-Constructor = Str
-RemoteSpecifyExpr = Bool
-RemoteURI = Str
-UseLoadSpec = Bool
-CallMember = Bool
-MemberType = Num
-Static = Bool
-TopLevel = Bool
-MemberName = Str
-HasReturnValue = Bool
-Params = Objs
-ConstructorParams = Objs
-StructDef = "TYPE, DotNetParameter"
-
-[DotNetStepAdditions.Call]
-DisposeCreatedInstance = True
-CallMember = True
-TopLevel = True
-
-[DEF, DotNetStepAdditions.Call.Params]
-%EPTYPE = "TYPE, DotNetParameter"
-%FLG: %EPTYPE = 131072
-
-[DEF, DotNetStepAdditions.Call.ConstructorParams]
-%EPTYPE = "TYPE, DotNetParameter"
-%FLG: %EPTYPE = 131072
-
-[DotNetStepAdditions]
-%TIMESTAMP = 1059697789
+[SequenceArgument]
+UseDef = True
+%TIMESTAMP = 1059672989
 %VERSION = "3.0.0.12373"
 %TYPELASTMOD = "3.0.0.12373"
 %MINPRODVER = "3.0.0.0"
 %FLG = 24
 %TYPE_FLG = 33554436
 
-[DEF, DotNetParameter]
-%LOCATION = "StdTypes"
-Name = Str
-ArgVal = "TYPE, Expression"
-ArgDisplayVal = "TYPE, Expression"
-Type = Num
-DisplayType = Str
-Direction = Num
-IsOptional = Bool
-CallDispose = Bool
-IsArray = Bool
-Dimension = Num
-MultiElement = Objs
-%ROOT_TYPE = True
-
-[DotNetParameter]
-Name = "_notNamed"
-Dimension = 1
-%TIMESTAMP = 1059697789
-%VERSION = "3.0.0.12373"
-%TYPELASTMOD = "3.0.0.12373"
-%MINPRODVER = "3.0.0.0"
-%FLG = 24
-%TYPE_FLG = 33554436
-
-[DEF, Variable_Force]
-%LOCATION = "StepTypes"
-DescriptionFormat = "TYPE, Expression"
-%FLG: DescriptionFormat = 524288
-DefaultNameFormat = "TYPE, Expression"
-%FLG: DefaultNameFormat = 524288
-BlockStartTypes = Str
-%FLG: BlockStartTypes = 524288
-BlockEndTypes = Str
-%FLG: BlockEndTypes = 524288
-AppliesToBlockStructure = Bool
-%FLG: AppliesToBlockStructure = 524288
-Menu = "TYPE, StepTypeMenu"
-Substeps = "TYPE, StepTypeSubstepsArray"
-CodeTemplates = Str
-%FLG: CodeTemplates = 524288
-TS = "TYPE, TEInf"
-Result = Obj
-VariableName = Str
-VariableValue = Num
-%ROOT_TYPE = True
-
-[Variable_Force]
-DescriptionFormat Line0001 = "(Step.VariableName ==\"\") ? \"Forces variable\" : \"Forces variable \"+Str(Step.VariableName)+((Step.VariableValue !=0)"
-DescriptionFormat Line0002 = " ? \" : sets its value to \"+ Str(Step.VariableValue) : \"\")"
-%FLG: DescriptionFormat = 4194328
-%INSTFLG: DescriptionFormat = 4718616
-%INSTOVRD: DescriptionFormat = 4718616
-DefaultNameFormat = "\"Force Variable\""
-%FLG: DefaultNameFormat = 4194328
-%INSTFLG: DefaultNameFormat = 4718616
-%INSTOVRD: DefaultNameFormat = 4718616
-%FLG: BlockStartTypes = 4194328
-%FLG: BlockEndTypes = 4194328
-%FLG: AppliesToBlockStructure = 4194328
-%HI: Substeps = [0]
-CodeTemplates Line0001 = "DefaultLabVIEW|DefaultCVI|DefaultVB.NET|DefaultCSharp.NET|DefaultC++.NET|DefaultVC++_Template|DefaultHTB72_Template|Defa"
-CodeTemplates Line0002 = "ultHTB80_Template|Default_Template"
-%FLG: CodeTemplates = 4194328
-%INSTFLG: TS = 262168
-%FLG: Result = 4194304
-%INSTFLG: Result = 4194304
-%TIMESTAMP = 1266242554
-%VERSION = "0.0.0.12"
-%TYPELASTMOD = "4.0.0.1030"
-%TYPE_FLG = 8
-
-[Variable_Force.Menu]
-ItemName = "\"Force variable\""
-Group = "Variables"
-
-[DEF, Variable_Force.Substeps]
-%[0] = Step
-%TYPE: %[0] = "PostSubstep"
-
-[Variable_Force.Substeps[0].TS]
-Id = "ID#:L06vGxZM10K3NTY1SnrPbA"
-
-[DEF, Variable_Force.Substeps[0].TS]
-SData = "TYPE, DotNetStepAdditions"
-%FLG: SData = 2097152
-
-[Variable_Force.Substeps[0].TS.SData.Call]
-AssemblyPath = "C:\\\\Program Files\\\\Alstom\\\\UTM4TS\\\\bin\\\\TestStand_TrainTracer.dll"
-ClassVariable = "FileGlobals.WebMaintenance"
-ClassName = "Alstom.eTrain.TestStand.Maintenance"
-MemberType = 1
-MemberName = "GetMessage"
-%HI: Params = [3]
-
-[DEF, Variable_Force.Substeps[0].TS.SData.Call.Params]
-%[0] = "TYPE, DotNetParameter"
-%[1] = "TYPE, DotNetParameter"
-%[2] = "TYPE, DotNetParameter"
-%[3] = "TYPE, DotNetParameter"
-
-[Variable_Force.Substeps[0].TS.SData.Call.Params[0]]
-Name = "errorOccurred"
-ArgVal = "Step.Result.Error.Occurred"
-Type = 2
-Direction = 10
-Dimension = -1
-
-[Variable_Force.Substeps[0].TS.SData.Call.Params[1]]
-Name = "errorCode"
-ArgVal = "Step.Result.Error.Code"
-Type = 6
-Direction = 10
-Dimension = -1
-
-[Variable_Force.Substeps[0].TS.SData.Call.Params[2]]
-Name = "errorMsg"
-ArgVal = "Step.Result.Error.Msg"
-Type = 1
-Direction = 10
-Dimension = -1
-
-[Variable_Force.Substeps[0].TS.SData.Call.Params[3]]
-Name = "reportText"
-ArgVal = "Step.Result.ReportText"
-Type = 1
-Direction = 10
-Dimension = -1
-
-[DEF, Variable_Force.Substeps[0]]
-%NAME = "Post"
-
-[Variable_Force.TS]
-Icon = "TrainTracer\\\\Force.ico"
-%INSTFLG: SData = 2097152
-%INSTOVRD: SData = 7274521
-UnloadOpt = "UnloadAfterSequenceExecution"
-
-[DEF, Variable_Force.TS]
-SData = "TYPE, DotNetStepAdditions"
-%FLG: SData = 2097152
-
-[Variable_Force.TS.SData.Call]
-AssemblyPath = "C:\\\\Program Files\\\\Alstom\\\\UTM4TS\\\\bin\\\\TestStand_TrainTracer.dll"
-ClassVariable = "FileGlobals.WebMaintenance"
-ClassName = "Alstom.eTrain.TestStand.Maintenance"
-DisposeCreatedInstance = False
-Constructor = "Maintenance()"
-MemberType = 1
-MemberName = "ForceVariable"
-HasReturnValue = True
-%HI: Params = [2]
-
-[DEF, Variable_Force.TS.SData.Call.Params]
-%[0] = "TYPE, DotNetParameter"
-%[1] = "TYPE, DotNetParameter"
-%[2] = "TYPE, DotNetParameter"
-
-[Variable_Force.TS.SData.Call.Params[0]]
-Name = "Return Value"
-ArgVal = "Step.Result.APICall"
-Type = 2
-Direction = 6
-Dimension = -1
-
-[Variable_Force.TS.SData.Call.Params[1]]
-Name = "variableSymbolicPath"
-ArgVal = "Step.VariableName"
-Type = 1
-Direction = 1
-Dimension = -1
-
-[Variable_Force.TS.SData.Call.Params[2]]
-Name = "value"
-ArgVal = "Step.VariableValue"
-Type = 12
-Direction = 1
-Dimension = -1
-
-[DEF, Variable_Force.Result]
-Error = "TYPE, Error"
-Status = Str
-ReportText = Str
-Common = "TYPE, CommonResults"
-APICall = Bool
-
-[Variable_Force.Result]
-%FLG: Error = 4194304
-%INSTFLG: Error = 4194304
-%FLG: Status = 4194304
-%INSTFLG: Status = 4194304
-%FLG: ReportText = 4194304
-%INSTFLG: ReportText = 4194304
-
-[DEF, Variable_Read_Test]
-%LOCATION = "StepTypes"
-DescriptionFormat = "TYPE, Expression"
-%FLG: DescriptionFormat = 524288
-DefaultNameFormat = "TYPE, Expression"
-%FLG: DefaultNameFormat = 524288
-BlockStartTypes = Str
-%FLG: BlockStartTypes = 524288
-BlockEndTypes = Str
-%FLG: BlockEndTypes = 524288
-AppliesToBlockStructure = Bool
-%FLG: AppliesToBlockStructure = 524288
-Menu = "TYPE, StepTypeMenu"
-Substeps = "TYPE, StepTypeSubstepsArray"
-CodeTemplates = Str
-%FLG: CodeTemplates = 524288
-TS = "TYPE, TEInf"
-Result = Obj
-VariableName = Str
-Limits = Obj
-Comp = Str
-CompExpr = "TYPE, Expression"
-UseCompExpr = Bool
-InBuf = Str
-DataSource = "TYPE, Expression"
-%ROOT_TYPE = True
-
-[Variable_Read_Test]
-DescriptionFormat = "(Step.VariableName ==\"\") ? \"Reads variable\" : \"Reads variable : \"+Step.VariableName"
-%FLG: DescriptionFormat = 4194328
-%INSTFLG: DescriptionFormat = 4718616
-%INSTOVRD: DescriptionFormat = 4718616
-DefaultNameFormat = "\"Pass/Fail Read Variable\""
-%FLG: DefaultNameFormat = 4194328
-%INSTFLG: DefaultNameFormat = 4718616
-%INSTOVRD: DefaultNameFormat = 4718616
-%FLG: BlockStartTypes = 4194328
-%FLG: BlockEndTypes = 4194328
-%FLG: AppliesToBlockStructure = 4194328
-%HI: Substeps = [1]
-CodeTemplates Line0001 = "DefaultLabVIEW|DefaultCVI|DefaultVB.NET|DefaultCSharp.NET|DefaultC++.NET|DefaultVC++_Template|DefaultHTB72_Template|Defa"
-CodeTemplates Line0002 = "ultHTB80_Template|Default_Template|NumericLimitLabVIEW|NumericLimitCVI|NumericLimitVB.NET|NumericLimitCSharp.NET|Numeric"
-CodeTemplates Line0003 = "LimitC++.NET|NumericLimitVC++_Template|NumericLimitHTB80_Template|NumericLimitHTB72Template|NumericLimit_Template"
-%FLG: CodeTemplates = 4194328
-%INSTFLG: TS = 262168
-%FLG: Result = 4194304
-%INSTFLG: Result = 4194304
-%FLG: Limits = 12288
-%INSTFLG: Limits = 12288
-Comp = "GELE"
-%FLG: Comp = 12288
-%INSTFLG: Comp = 12288
-%FLG: CompExpr = 6144
-DataSource = "Step.Result.Numeric"
-%TIMESTAMP = 1266242453
-%VERSION = "0.0.0.19"
-%TYPELASTMOD = "4.0.0.1030"
-%TYPE_FLG = 8
-
-[Variable_Read_Test.Menu]
-ItemName = "\"Pass/Fail Read variable\""
-Group = "Variables"
-
-[DEF, Variable_Read_Test.Substeps]
-%[0] = Step
-%TYPE: %[0] = "PostSubstep"
-%[1] = Step
-%TYPE: %[1] = "EditSubstep"
-
-[Variable_Read_Test.Substeps[0].TS]
-Id = "ID#:L06vGxZM10K3NTY1SnrPbA"
-
-[DEF, Variable_Read_Test.Substeps[0].TS]
-SData = "TYPE, DotNetStepAdditions"
-%FLG: SData = 2097152
-
-[Variable_Read_Test.Substeps[0].TS.SData.Call]
-AssemblyPath = "C:\\\\Program Files\\\\Alstom\\\\UTM4TS\\\\bin\\\\TestStand_TrainTracer.dll"
-ClassVariable = "FileGlobals.WebMaintenance"
-ClassName = "Alstom.eTrain.TestStand.Maintenance"
-MemberType = 1
-MemberName = "GetMessage"
-%HI: Params = [3]
-
-[DEF, Variable_Read_Test.Substeps[0].TS.SData.Call.Params]
-%[0] = "TYPE, DotNetParameter"
-%[1] = "TYPE, DotNetParameter"
-%[2] = "TYPE, DotNetParameter"
-%[3] = "TYPE, DotNetParameter"
-
-[Variable_Read_Test.Substeps[0].TS.SData.Call.Params[0]]
-Name = "errorOccurred"
-ArgVal = "Step.Result.Error.Occurred"
-Type = 2
-Direction = 10
-Dimension = -1
-
-[Variable_Read_Test.Substeps[0].TS.SData.Call.Params[1]]
-Name = "errorCode"
-ArgVal = "Step.Result.Error.Code"
-Type = 6
-Direction = 10
-Dimension = -1
-
-[Variable_Read_Test.Substeps[0].TS.SData.Call.Params[2]]
-Name = "errorMsg"
-ArgVal = "Step.Result.Error.Msg"
-Type = 1
-Direction = 10
-Dimension = -1
-
-[Variable_Read_Test.Substeps[0].TS.SData.Call.Params[3]]
-Name = "reportText"
-ArgVal = "Step.Result.ReportText"
-Type = 1
-Direction = 10
-Dimension = -1
-
-[DEF, Variable_Read_Test.Substeps[0]]
-%NAME = "Post"
-
-[DEF, Variable_Read_Test.Substeps[1].TS]
-SData = "TYPE, FlexCStepAdditions"
-%FLG: SData = 2097152
-
-[Variable_Read_Test.Substeps[1].TS.SData.Call]
-LibPath = "CommonSubsteps.dll"
-Func = "EditNumericMeasurementStepUsingExpr"
-%HI: Parms = [3]
-
-[DEF, Variable_Read_Test.Substeps[1].TS.SData.Call.Parms]
-%[0] = "TYPE, FCParameter"
-%[1] = "TYPE, FCParameter"
-%[2] = "TYPE, FCParameter"
-%[3] = "TYPE, FCParameter"
-
-[Variable_Read_Test.Substeps[1].TS.SData.Call.Parms[0]]
-Name = "Return Value"
-Type = 3
-ObjType = 2
-
-[Variable_Read_Test.Substeps[1].TS.SData.Call.Parms[1]]
-Name = "sequenceContext"
-Type = 4
-ArgVal = "ThisContext"
-
-[Variable_Read_Test.Substeps[1].TS.SData.Call.Parms[2]]
-Name = "reserved"
-ArgVal = "0"
-
-[Variable_Read_Test.Substeps[1].TS.SData.Call.Parms[3]]
-Name = "changed"
-ObjType = 2
-NumPass = 1
-ArgVal = "RunState.InitialSelection.SelectedFile.ChangeCount"
-ArgDisplayVal = "RunState.InitialSelection.SelectedFile.ChangeCount"
-
-[Variable_Read_Test.Substeps[1].TS]
-%INSTFLG: SData = 2097152
-%INSTOVRD: SData = 2097152
-ConnectionLifetime = 0
-
-[Variable_Read_Test.Substeps[1]]
-%INSTFLG: TS = 262168
-%INSTOVRD: TS = 262168
-MenuName = "ResStr(\"NI_STEPTYPES\", \"NUM_EDIT_STEP_MENU_NAME\")"
-SupportsReadOnly = True
-
-[Variable_Read_Test.Substeps[1].Result]
-%INSTOVRD: Error = 4194304
-%INSTFLG: ReportText = 0
-%INSTOVRD: Common = 4194304
-
-[DEF, Variable_Read_Test.Substeps[1]]
-%NAME = "Edit"
-
-[Variable_Read_Test.TS]
-Icon = "TrainTracer\\\\Read.ico"
-%INSTFLG: SData = 2097152
-%INSTOVRD: SData = 7274521
-UnloadOpt = "UnloadAfterSequenceExecution"
-StatusExpr Line0001 = "CheckLimits(Step.DataSource == \"Step.Result.Numeric\" ? Step.Result.Numeric : (Step.Result.Numeric = Evaluate(Step.Data"
-StatusExpr Line0002 = "Source)), Step.Limits.High, Step.Limits.Low,Step.Comp)"
-
-[DEF, Variable_Read_Test.TS]
-SData = "TYPE, DotNetStepAdditions"
-%FLG: SData = 2097152
-
-[Variable_Read_Test.TS.SData.Call]
-AssemblyPath = "C:\\\\Program Files\\\\Alstom\\\\UTM4TS\\\\bin\\\\TestStand_TrainTracer.dll"
-ClassVariable = "FileGlobals.WebMaintenance"
-ClassName = "Alstom.eTrain.TestStand.Maintenance"
-DisposeCreatedInstance = False
-Constructor = "Maintenance()"
-MemberType = 1
-MemberName = "ReadVariable"
-HasReturnValue = True
-%HI: Params = [2]
-
-[DEF, Variable_Read_Test.TS.SData.Call.Params]
-%[0] = "TYPE, DotNetParameter"
-%[1] = "TYPE, DotNetParameter"
-%[2] = "TYPE, DotNetParameter"
-
-[Variable_Read_Test.TS.SData.Call.Params[0]]
-Name = "Return Value"
-ArgVal = "Step.Result.APICall"
-Type = 2
-Direction = 6
-Dimension = -1
-
-[Variable_Read_Test.TS.SData.Call.Params[1]]
-Name = "variableSymbolicPath"
-ArgVal = "Step.VariableName"
-Type = 1
-Direction = 1
-Dimension = -1
-
-[Variable_Read_Test.TS.SData.Call.Params[2]]
-Name = "value"
-ArgVal = "Step.Result.Numeric"
-Type = 12
-Direction = 10
-Dimension = -1
-
-[DEF, Variable_Read_Test.Result]
-Error = "TYPE, Error"
-Status = Str
-ReportText = Str
-Common = "TYPE, CommonResults"
-APICall = Bool
-Numeric = Num
-Units = Str
-
-[Variable_Read_Test.Result]
-%FLG: Error = 4194304
-%INSTFLG: Error = 4194304
-%FLG: Status = 4194304
-%INSTFLG: Status = 4194304
-%FLG: ReportText = 4194304
-%INSTFLG: ReportText = 4194304
-%FLG: Numeric = 9216
-%INSTFLG: Numeric = 9216
-%FLG: Units = 10240
-%INSTFLG: Units = 8192
-
-[DEF, Variable_Read_Test.Limits]
-Low = Num
-High = Num
-LowExpr = "TYPE, Expression"
-HighExpr = "TYPE, Expression"
-UseLowExpr = Bool
-UseHighExpr = Bool
-
-[Variable_Read_Test.Limits]
-Low = 9
-High = 11
-%FLG: LowExpr = 2048
-%FLG: HighExpr = 2048
-%FLG: UseLowExpr = 2048
-%FLG: UseHighExpr = 2048
-
-[DEF, Statement]
-%LOCATION = "StepTypes"
-Substeps = "TYPE, StepTypeSubstepsArray"
-DescriptionFormat = "TYPE, Expression"
-%FLG: DescriptionFormat = 524288
-DefaultNameFormat = "TYPE, Expression"
-%FLG: DefaultNameFormat = 524288
-Menu = "TYPE, StepTypeMenu"
-TS = "TYPE, TEInf"
-Result = Obj
-CodeTemplates = Str
-%FLG: CodeTemplates = 524288
-%ROOT_TYPE = True
-
-[Statement]
-%HI: Substeps = [0]
-%INSTFLG: Substeps = 524312
-%INSTOVRD: Substeps = 655384
-DescriptionFormat = "LocalizeExpression(Step.TS.PostExpr)"
-%FLG: DescriptionFormat = 4194328
-%INSTFLG: DescriptionFormat = 4718616
-%INSTOVRD: DescriptionFormat = 4718616
-DefaultNameFormat = "ResStr(\"NI_SUBSTEPS\", \"STATEMENT_DEF_STEP_NAME\")"
-%FLG: DefaultNameFormat = 4194328
-%INSTFLG: DefaultNameFormat = 4718616
-%INSTOVRD: DefaultNameFormat = 4718616
-%INSTFLG: Menu = 524312
-%INSTOVRD: Menu = 524312
-%INSTFLG: TS = 4456472
-%INSTOVRD: TS = 4456472
-%FLG: Result = 4194304
-%INSTFLG: Result = 4194304
-%FLG: CodeTemplates = 4194328
-%TIMESTAMP = 1035380509
-%VERSION = "3.0.0.12373"
-%TYPELASTMOD = "3.0.0.12373"
-%MINPRODVER = "3.0.0.0"
-%TYPE_FLG = 33554446
-
-[DEF, Statement.Substeps]
-%[0] = Step
-%TYPE: %[0] = "EditSubstep"
-
-[DEF, Statement.Substeps[0].TS]
-SData = "TYPE, FlexCStepAdditions"
-%FLG: SData = 2097152
-
-[Statement.Substeps[0].TS.SData.Call]
-LibPath = "CommonSubsteps.dll"
-Func = "EditStatementStep"
-%HI: Parms = [3]
-
-[DEF, Statement.Substeps[0].TS.SData.Call.Parms]
-%[0] = "TYPE, FCParameter"
-%[1] = "TYPE, FCParameter"
-%[2] = "TYPE, FCParameter"
-%[3] = "TYPE, FCParameter"
-
-[Statement.Substeps[0].TS.SData.Call.Parms[0]]
-Name = "Return Value"
-Type = 3
-ObjType = 2
-
-[Statement.Substeps[0].TS.SData.Call.Parms[1]]
-Name = "context"
-Type = 4
-ArgVal = "ThisContext"
-
-[Statement.Substeps[0].TS.SData.Call.Parms[2]]
-Name = "reserved"
-ArgVal = "0"
-
-[Statement.Substeps[0].TS.SData.Call.Parms[3]]
-Name = "changed"
-ObjType = 2
-NumPass = 1
-ArgVal = "RunState.InitialSelection.SelectedFile.ChangeCount"
-
-[Statement.Substeps[0].TS]
-%INSTFLG: SData = 2097152
-%INSTOVRD: SData = 2097152
-ConnectionLifetime = 0
-
-[Statement.Substeps[0]]
-%INSTFLG: TS = 262168
-%INSTOVRD: TS = 262168
-MenuName = "ResStr(\"NI_SUBSTEPS\", \"STATEMENT_EDIT_STEP_MENU_NAME\")"
-SupportsReadOnly = True
-
-[Statement.Substeps[0].Result]
-%INSTOVRD: Error = 4194304
-%INSTFLG: ReportText = 0
-%INSTOVRD: Common = 4194304
-
-[DEF, Statement.Substeps[0]]
-%NAME = "Edit"
-
-[Statement.Menu]
-ItemName = "ResStr(\"NI_SUBSTEPS\", \"STATEMENT_MENU_ITEM_NAME\")"
-Group = "NI_Miscellaneous"
-
-[Statement.TS]
-Icon = "Statement.ico"
-%INSTFLG: SData = 2097152
-%INSTOVRD: SData = 7143448
-ConnectionLifetime = 0
-CanSpecifyModule = False
-
-[DEF, Statement.TS]
-SData = "TYPE, NoneStepAdditions"
-%FLG: SData = 2097152
-
-[DEF, Statement.Result]
-Error = "TYPE, Error"
-Status = Str
-ReportText = Str
-Common = "TYPE, CommonResults"
-
-[Statement.Result]
-%FLG: Error = 4194304
-%INSTFLG: Error = 4194304
-%INSTOVRD: Error = 4194304
-%FLG: Status = 4194304
-%INSTFLG: Status = 4194304
-%FLG: ReportText = 4194304
-%INSTFLG: ReportText = 4194304
-%INSTOVRD: Common = 4194304
->>

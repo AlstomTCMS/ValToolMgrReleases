@@ -1,6 +1,5 @@
 SequenceCall(SeqIdx, InstrIdx, Instruction) ::= <<
 $InstructionHeader(SeqIdx, InstrIdx, Instruction)$
-
 [DEF, SF.Seq[$SeqIdx$].Main[$InstrIdx$].TS]
 SData = "TYPE, SeqCallStepAdditions"
 
@@ -9,6 +8,6 @@ SeqName = "$Instruction.Identifier$"
 UseCurFile = True
 
 [DEF, SF.Seq[$SeqIdx$].Main[$InstrIdx$]]
-%NAME = "$Instruction.Text$"
+%NAME = "Call to $Instruction.Identifier$"
 
 >>
