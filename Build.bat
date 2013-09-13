@@ -8,7 +8,7 @@ del .\bin\*.xml
 xcopy /E .\Src\templates\* .\Bin\templates\
 xcopy /E .\Src\Configuration\* .\Bin\Configuration\
 xcopy /E .\Src\Tools\* .\Bin\Tools\
-xcopy /E .\Src\Example\* .\Bin\Test\
+xcopy /E .\Src\Example\* .\Bin\Example\
 
 copy .\Src\Readme.md ReleaseNote.md
 
