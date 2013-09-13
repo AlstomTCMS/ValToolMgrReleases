@@ -6,8 +6,14 @@
 	<Location name="Section1/MPU_T" strategy="SingleLocationToSingleTarget" targetConfig="EMB2" />
 	<Location name="Section2/MPU_A" strategy="SingleLocationToSingleTarget" targetConfig="EMB3" />
 	<Location name="Section2/MPU_T" strategy="SingleLocationToSingleTarget" targetConfig="EMB4" />
-	<Location name="Section1/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB1" />
-	<Location name="Section2/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB1" />
+	<Location name="Section3/MPU_A" strategy="SingleLocationToSingleTarget" targetConfig="EMB_NOT_EXISTS" />
+	<Location name="Section3/MPU_T" strategy="SingleLocationToSingleTarget" targetConfig="EMB_NOT_EXISTS" />
+	<Location name="Section4/MPU_A" strategy="SingleLocationToSingleTarget" targetConfig="EMB_NOT_EXISTS" />
+	<Location name="Section4/MPU_T" strategy="SingleLocationToSingleTarget" targetConfig="EMB_NOT_EXISTS" />
+	<Location name="Section1/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB2" />
+	<Location name="Section2/ENV" strategy="SingleLocationToSingleTarget" targetConfig="TB2" />
+	<Location name="Section3/ENV" strategy="SingleLocationToSingleTarget" targetConfig="EMB_NOT_EXISTS" />
+	<Location name="Section4/ENV" strategy="SingleLocationToSingleTarget" targetConfig="EMB_NOT_EXISTS" />
   </LocationDefinitions>
   <TargetDefinitions>
 	<Target name="EMB1" testStandIdentifier="FileGlobals.CbEmb1" />
@@ -16,6 +22,7 @@
 	<Target name="EMB4" testStandIdentifier="FileGlobals.CbEmb4" />
     <Target name="TB1" testStandIdentifier="Fileglobals.CbEmb7" />
 	<Target name="TB2" testStandIdentifier="FileGlobals.CbEmb8" />
+	<Target name="EMB_NOT_EXISTS" testStandIdentifier="FileGlobals.CbEmb99" />
     <Target name="TrainTracerProject" traintracerIdentifier="Fileglobals.WebMaintenance" />
   </TargetDefinitions>
 </Configuration>

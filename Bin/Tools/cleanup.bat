@@ -1,1 +1,1 @@
-del *.html
+del *.html *.xml

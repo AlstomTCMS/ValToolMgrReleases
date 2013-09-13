@@ -4,10 +4,20 @@
 This tool is intended to generate TestStand sequences using some Excel macros.
 
 ## Demonstration sample
-State of art of what is able to handle this script is presented on directory <test/UnitTest 2013 00.xlsx>. This file is intended to describe all currently available features, at least once.
+State of art of what is able to handle this script is presented on directory <Example/UnitTest 2013 00.xlsx>. This file is intended to describe all currently available features, at least once.
 Remember to use the one from a released version (see #Version history below).
 
 # Version history
+
+## ValToolMgr_0.0.6
+
+Source code : [ValToolMgr_0.0.6](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.6)
+
+List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=7&state=closed)
+
+Main limitations :
+ * [#62](https://github.com/AlstomTCMS/ValToolMgr/issues/62) : No possibility to unforce arrays.
+ * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
 
 ## ValToolMgr_0.0.4
 

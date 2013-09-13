@@ -8,6 +8,7 @@ Cleanup = Objs
 GotoCleanupOnFail = Bool
 RecordResults = Bool
 RTS = Obj
+Requirements = Obj
 %NAME = "$SequenceContent.Title$"
 
 [SF.Seq[$SeqOffset$]]
@@ -21,6 +22,7 @@ $if(SequenceContent)$%HI: Main = [$SequenceContent.Max$]$endif$
 RecordResults = True
 %FLG: RecordResults = 4194312
 %FLG: RTS = 4456456
+%FLG: Requirements = 4456456
 
 [DEF, SF.Seq[$SeqOffset$].Locals]
 ResultList = Objs
@@ -69,5 +71,11 @@ CopyStepsOnOverriding = True
 %FLG: CopyStepsOnOverriding = 4194304
 Priority = 2953567917
 %FLG: Priority = 4194304
+
+[DEF, SF.Seq[$SeqOffset$].Requirements]
+Links = Strs
+
+[SF.Seq[$SeqOffset$].Requirements]
+%FLG: Links = 71303168
 
 >>
