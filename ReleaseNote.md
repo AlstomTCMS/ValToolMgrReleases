@@ -9,6 +9,16 @@ Remember to use the one from a released version (see #Version history below).
 
 # Version history
 
+## ValToolMgr_0.0.7
+
+Source code : [ValToolMgr_0.0.7](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.7)
+
+List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=8&state=closed)
+
+Main limitations :
+ * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
+
+
 ## ValToolMgr_0.0.6
 
 Source code : [ValToolMgr_0.0.6](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.6)
