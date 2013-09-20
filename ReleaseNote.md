@@ -1,4 +1,4 @@
-# ValToolMgr
+# Validation Tool Manager (ValToolMgr)
 
 ## Abstract
 This tool is intended to generate TestStand sequences using some Excel macros.
@@ -7,11 +7,32 @@ This tool is intended to generate TestStand sequences using some Excel macros.
 State of art of what is able to handle this script is presented on directory <Example/UnitTest 2013 00.xlsx>. This file is intended to describe all currently available features, at least once.
 Remember to use the one from a released version (see #Version history below).
 
-# Version history
+## Installation
 
-## ValToolMgr_0.0.7
+ * Create directory **c:\macros_alstom**
+ * Extract content of **bin** folder of **ValToolMgr_xxx.7z** inside newly created folder
+ * Open **Excel**
+ * Goto **File** -> **Options**
+ * Click on **Add-Ins**
+ * At the end of right window, click on **Go** which is located next to **Manage Excel Add-Ins**
+ * Click on **Browse**, then finally select **ValToolMgrDna.xll** located in **c:\macros_alstom** folder.
+ * Validate all remaining windows, and exit **Excel**.
 
-Source code : [ValToolMgr_0.0.7](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.7)
+## Version history
+
+### ValToolMgr_0.0.8
+
+Source code : [ValToolMgr_0.0.8](https://github.com/AlstomTCMS/ValToolMgr/releases/tag/ValToolMgr_0.0.8)
+
+List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=9&state=closed)
+
+Main limitations :
+ * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
+
+
+### ValToolMgr_0.0.7
+
+Source code : [ValToolMgr_0.0.7](https://github.com/AlstomTCMS/ValToolMgr/releases/tag/ValToolMgr_0.0.7)
 
 List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=8&state=closed)
 
@@ -19,9 +40,9 @@ Main limitations :
  * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
 
 
-## ValToolMgr_0.0.6
+### ValToolMgr_0.0.6
 
-Source code : [ValToolMgr_0.0.6](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.6)
+Source code : [ValToolMgr_0.0.6](https://github.com/AlstomTCMS/ValToolMgr/releases/tag/ValToolMgr_0.0.6)
 
 List of processed issues : [Milestone issues list](https://github.com/AlstomTCMS/ValToolMgr/issues?milestone=7&state=closed)
 
@@ -29,7 +50,7 @@ Main limitations :
  * [#62](https://github.com/AlstomTCMS/ValToolMgr/issues/62) : No possibility to unforce arrays.
  * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
 
-## ValToolMgr_0.0.4
+### ValToolMgr_0.0.4
 
 Source code : [ValToolMgr_0.0.4](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.0.4)
 
@@ -40,7 +61,7 @@ Main limitations :
  * [#63](https://github.com/AlstomTCMS/ValToolMgr/issues/63) : Generate .SEQ where is saved XLS file, with same name as the XLS file.
  * [#64](https://github.com/AlstomTCMS/ValToolMgr/issues/64) : Outdated template for test sheets.
 
-## ValToolMgr_0.0.3
+### ValToolMgr_0.0.3
 
 Source code : [ValToolMgr_0.3](https://github.com/AlstomTCMS/ValToolMgr/tree/ValToolMgr_0.3)
 
